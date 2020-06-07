@@ -7,13 +7,27 @@
 .align 2
 .global main
 .type main,%function
-main: 
+main:
+	ldr r0,=entrada
+	bl puts
+	ldr r0,=Instrucciones
+	bl puts
+	ldr r0,= instrucciones2
+	bl puts
+	ldr r0,=instrucciones3
+	bl puts
+
 
 
 
 
 .data
 .align 2
+
+entrada:	.asciz "Bienvenido al juego"
+Instrucciones:	.asciz "El juego consiste en una trivia en la cual usted y su oponente debera contestar correctamente las preguntas para obtener la ventaja"
+instrucciones2:	.asciz "Debera responder correctamente 3 preguntas de la misma categoria para obtener un punto, el primero el obtener 3 sera el ganador"
+instrucciones3:	.asciz "No pueden obtener mas puntos de la misma categoria"
 @Primeras 6 preguntas de arte
 pregunta1:	.asciz	"¿Cual es el nombre de la tecnica que consiste en dar tonos grises a una imagen?"
 pregunta1r1: .asciz	"Cronomatica"
