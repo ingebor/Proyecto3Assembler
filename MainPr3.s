@@ -103,6 +103,9 @@ pregunta5r2:	.asciz	"Vincent Van Gogh"
 pregunta6:	.asciz	"¿Quien pinto la Mona Lisa?"
 pregunta6r1:	.asciz	"Pablo Picasso"	
 pregunta6r2:	.asciz	"Leonardo Da Vinci"	@correcta
+preguntaE1:	.asciz	"¿Cual es el ultimo capitulo de la biblia catolica?"
+preguntaE1r1:	.asciz	"Exodo"	
+preguntaE1r2:	.asciz	"Apocalipsis"	@correcta
 
 @Primeras 6 preguntas de literatura
 pregunta7:	.asciz	"¿Quien escribio el poema de Lo Fatal?"
@@ -123,6 +126,9 @@ pregunta11r2:	.asciz	"Michael Jackson"
 pregunta12:	.asciz	"¿Quién escribió la Iliada?"
 pregunta12r1:	.asciz	"Homero"	@correcta
 pregunta12r2:	.asciz	"Herodoto"
+preguntaE2:	.asciz	"¿Como se llama el autor El cuervo?"
+preguntaE2r1:	.asciz	"Roberto Mazariegos"
+preguntaE2r2:	.asciz	"Edgar Allan Poe"	@correcta
 
 @ primeras 6 preguntas de geografia
 pregunta13:	.asciz "¿Donde se ecuentra Helsinki?"
@@ -142,7 +148,10 @@ pregunta17r1:	.asciz "Italia" @correcta
 pregunta17r2:	.asciz "Francia"  
 pregunta18:	.asciz "¿Que estado de EEUU es una isla?"
 pregunta18r1:	.asciz "Hawaii" @correcta
-pregunta18r2:	.asciz "Florida"  
+pregunta18r2:	.asciz "Florida" 
+preguntaE3:	.asciz	"¿Cuantos colores se encuentran en la bandera de brasil?"
+preguntaE3r1:	.asciz	"5"
+preguntaE3r2:	.asciz	"4"	@correcta 
 
 @primeras 6 pregunts de Ciencia
 pregunta19:	.asciz "¿La mitocondria tiene su propio ADN?"
@@ -163,6 +172,9 @@ pregunta23r2:	.asciz "Mujeres"
 pregunta24:	.asciz "¿De que estan compuestos los electrolitos?"
 pregunta24r1:	.asciz "Sodio,potasio y cloruro" @correcto
 pregunta24r2:	.asciz "Vitaminas"
+preguntaE4:	.asciz	"¿Cuales son las siglas del oro en la tabla periodica?"
+preguntaE4r1:	.asciz	"Au" @correcta
+preguntaE4r2:	.asciz	"O"	
 
 @primeras 6 de historia
 pregunta25:	.asciz "¿Quien fue el 16 presidente de EEUU?"
@@ -183,6 +195,9 @@ pregunta29r2:	.asciz "La nueva francia" @correcto
 pregunta30:	.asciz "¿Quien fue el presidente de Guatemala en 2014?"
 pregunta30r1:	.asciz "Jimmy Morales"
 pregunta30r2:	.asciz "Otto Perez Molina" @correcto
+preguntaE5:	.asciz	"¿Quien es el padre de letemaco?"
+preguntaE5r1:	.asciz	"Quiron"
+preguntaE5r2:	.asciz	"Ulises"	@correcta
 
 @Primeras 6 de entretenimiento
 pregunta31:	.asciz "¿En que pelicula muerte Luke Skywalker?"
@@ -203,6 +218,9 @@ pregunta35r2:	.asciz "Galanties"
 pregunta36:	.asciz "¿Que es el anime?"
 pregunta36r1:	.asciz "Animacion china"
 pregunta36r2:	.asciz "Animacion Japonesa" @correcto
+preguntaE6:	.asciz	"¿Como se llama el entrenador de hercules?"
+preguntaE6r1:	.asciz	"Phil" @correcta
+preguntaE6r2:	.asciz	"Phelp"	
 
 @primeras 6 de deportes
 pregunta37:	.asciz "¿Cual de estos jugadores es de Guatemala?"
@@ -223,6 +241,9 @@ pregunta41r2:	.asciz "Italia" @correcto
 pregunta42:	.asciz "¿En cual de estos deportes No se usa raqueta?"
 pregunta42r1:	.asciz "Esgrima"
 pregunta42r2:	.asciz "Squash" @correcto
+preguntaE7:	.asciz	"¿Cuantas personas integran un grupo de voleyball?"
+preguntaE7r1:	.asciz	"4"
+preguntaE7r2:	.asciz	"6"	@correcta
 
 
 
