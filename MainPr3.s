@@ -40,8 +40,8 @@ entrada:	.asciz "Bienvenido al juego"
 Instrucciones:	.asciz "El juego consiste en una trivia en la cual usted y su oponente debera contestar correctamente las preguntas para obtener la ventaja"
 instrucciones2:	.asciz "Debera responder correctamente 3 preguntas de la misma categoria para obtener un punto, el primero el obtener 3 sera el ganador"
 instrucciones3:	.asciz "No pueden obtener mas puntos de la misma categoria"
-@Primeras 6 preguntas de arte
 
+@Primeras 6 preguntas de arte
 pregunta1:	.asciz	"¿A que edad murio Mozart?"
 pregunta1r1:	.asciz	"68"
 pregunta1r2:	.asciz	"35"	@correcta
@@ -71,8 +71,6 @@ pregunta8r2:	.asciz	"Magda Szabo"
 pregunta9:	.asciz	"¿Cual obra dio comienzo al modernismo?"
 pregunta9r1:	.asciz	"Azul"	@correcta
 pregunta9r2:	.asciz	"Cantos de vida y de esperanza"
-
-@Segundas 6 preguntas de literatura
 pregunta10:	.asciz	"¿Cual era el primer nombre de Neruda?"
 pregunta10r1:	.asciz	"Carlo"
 pregunta10r2:	.asciz	"Pablo"	@correcta
@@ -93,8 +91,6 @@ pregunta14r2:	.asciz "Corea"
 pregunta15:	.asciz "¿Que isla africana es de mayor tamaño"
 pregunta15r1:	.asciz "Seychelles"
 pregunta15r2:	.asciz "Madagascar" @correcta
-
-@segundas preguntas de geografia
 pregunta16:	.asciz "¿cuantas subdivisiones tiene Asia"
 pregunta16r1:	.asciz "7"
 pregunta16r2:	.asciz "6" @correcta  
@@ -118,8 +114,6 @@ pregunta21r2:	.asciz "UAA"
 pregunta22:	.asciz "¿Con que otro nombre se conoce a las orcas?"
 pregunta22r1:	.asciz "Ballenas asesinas" @correcto
 pregunta22r2:	.asciz "Gran blanca"
-
-@segundas preguntas de ciencia
 pregunta23:	.asciz "¿Quienes padecen andropausia?"
 pregunta23r1:	.asciz "Hombres" @correcto
 pregunta23r2:	.asciz "Mujeres"
@@ -137,8 +131,6 @@ pregunta26r2:	.asciz "22" @correcto
 pregunta27:	.asciz "¿Como se llam la diosa griega primigeni de l noche?"
 pregunta27r1:	.asciz "Nyx" @correcto
 pregunta27r2:	.asciz "Eris"
-
-@segundas de historia
 pregunta28:	.asciz "¿Que imperio es identificado con las siglas SPQR?"
 pregunta28r1:	.asciz "Impeio romano" @correcto
 pregunta28r2:	.asciz "Imperio Mogol"
@@ -159,8 +151,6 @@ pregunta32r2:	.asciz "Corea del norte"
 pregunta33:	.asciz "¿Quien es el maestro Roshi?"
 pregunta33r1:	.asciz "Maestro de Veguetta"
 pregunta33r2:	.asciz "Maestro de Goku en artes marciales" @correcto
-
-@segundas de entretenimiento:
 pregunta34:	.asciz "¿En cual de estos cuentos aparece un conejo blanco?"
 pregunta34r1:	.asciz "Pinoccio"
 pregunta34r2:	.asciz "Alicia y el pais de las maravillas" @correcto
@@ -184,8 +174,6 @@ pregunta39r2:	.asciz "Brasil"
 pregunta40:	.asciz "¿Que deporte practica Rafae Nadal?"
 pregunta40r1:	.asciz "Tennis" @correcto
 pregunta40r2:	.asciz "Natacion"
-
-@Segundas de deportes
 pregunta41:	.asciz "¿Cual es la seleccion campeona de alemania 2006?"
 pregunta41r1:	.asciz "Alemania"
 pregunta41r2:	.asciz "Italia" @correcto
