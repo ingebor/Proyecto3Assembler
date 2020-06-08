@@ -17,7 +17,19 @@ main:
 	ldr r0,=instrucciones3
 	bl puts
 
+etArte:
 
+etLiteratura:
+
+etGeografia:
+
+etCiecia:
+
+etHistoria:
+
+etEntretenimiento:
+
+etDeportes:
 
 
 
