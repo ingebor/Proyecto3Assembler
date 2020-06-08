@@ -16,6 +16,29 @@ main:
 	bl puts
 	ldr r0,=instrucciones3
 	bl puts
+	ldr r0,=instrucciones4
+	bl puts
+	
+	ldr r0,=formatod
+	ldr r1,=entrada1
+	bl scanf
+	
+	cmp r0,#0
+	beq numIncorrecto
+	
+	b cicloMain
+	
+cicloMain:
+	ldr r0,=turno1
+	bl puts 
+	
+	b salida
+	
+	
+numIncorrecto:
+	ldr r0,=incorrecto
+	bl puts
+	bl getchar
 
 etArte:
 
@@ -31,6 +54,11 @@ etEntretenimiento:
 
 etDeportes:
 
+salida:
+	mov r3,#0
+	mov r0,#0
+	ldmfd sp!, {lr}
+	bx lr
 
 
 .data
@@ -40,6 +68,21 @@ entrada:	.asciz "Bienvenido al juego"
 Instrucciones:	.asciz "El juego consiste en una trivia en la cual usted y su oponente debera contestar correctamente las preguntas para obtener la ventaja"
 instrucciones2:	.asciz "Debera responder correctamente 3 preguntas de la misma categoria para obtener un punto, el primero el obtener 3 sera el ganador"
 instrucciones3:	.asciz "No pueden obtener mas puntos de la misma categoria"
+instrucciones4:	.asciz "¿Desea comenzar a jugar? Selecciones la opcion correcta! \n1. Si!\n2. No, quiero salir del juego"
+incorrecto:	.asciz	"Ha ingresado un valor incorrecto, ¡intentelo de nuevo!"
+turno1:	.asciz	"Es el turno del primer jugador! Presiona 1 si estas listo!"
+turno2:	.asciz	"Es el turno del segundo jugador! Presiona 1 si estas listo!"
+formatod: .asciz	"%d"
+entrada1:	.word 0
+
+arte:	.asciz	"¡Arte!"
+literatura:	.asciz	"¡Literatura!"
+geografia:	.asciz	"¡Geografia!"
+ciencia:	.asciz	"¡Ciencia!"
+historia:	.asciz	"¡Historia!"
+entretenimiento:	.asciz	"¡Entretenimiento!"
+deportes:	.asciz	"¡Deportes!"
+
 
 @Primeras 6 preguntas de arte
 pregunta1:	.asciz	"¿A que edad murio Mozart?"
