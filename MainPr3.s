@@ -18,9 +18,12 @@ main:
 	bl puts
 	ldr r0,= instrucciones2
 	bl puts
-	ldr r0,=instrucciones3
+	ldr r0,=instrucciones3 
 	bl puts
 
+	mov r3, #0 @contador de puntos del jugador 1
+	mov r4, #0 @contador de puntos del jugador 2
+	mov r6, #0 @decide si es el turno del jugador 1 o 2
 main2:
 	ldr r0,=instrucciones4
 	bl puts
