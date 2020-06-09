@@ -3,12 +3,13 @@
 @Proyecto No 3, Trivia ARM
 @Andres Say 19705, Ayleen Rubio 19003
 
-.text
-.align 2
+@.text
+@.align 2
 .global main
-.type main,%function
+.func main
+@.type main,%function
 main:
-	stmfd sp!,{lr}
+	@stmfd sp!,{lr}
 	
 	cont .req r5
 	
@@ -21,14 +22,16 @@ main:
 	ldr r0,=instrucciones3 
 	bl puts
 
-	mov r3, #0 @contador de puntos del jugador 1
-	mov r4, #0 @contador de puntos del jugador 2
-	mov r6, #0 @decide si es el turno del jugador 1 o 2
+	mov r4, #0 @contador de puntos del jugador 1, personajes
+	mov r5, #0 @contador de puntos del jugador 2,  personajes
+	mov r6, #0 @contador correctas jugador 1
+	mov r7, #0 @contador correctas jugador 2
+		
 main2:
 	ldr r0,=instrucciones4
 	bl puts
 	
-	ldr r0,=formatod
+	ldr r0,=formato
 	ldr r1,=entrada1
 	bl scanf
 	
@@ -37,36 +40,15 @@ main2:
 	
 	ldrb r11,[r8]
 	
+	cmp r11,#1
+	beq cicloMain
 	
-	cmp r11,#'1'
-	beq etArte
-	
-	cmp r11,#'2'
-	beq etLiteratura
-	
-	cmp r11,#'3'
-	beq etGeografia
-	
-	cmp r11,#'4'
-	beq etCiencia
-	
-	cmp r11,#'5'
-	beq etHistoria
-	
-	cmp r11,#'6'
-	beq etEntretenimiento
-	
-	cmp r11,#'7'
-	beq etDeportes
-	
-	cmp r11,#'8'
+	cmp r11,#2
 	beq salir
 	
 	b numIncorrecto
 	
 cicloMain:
-	ldr r0,=turno1
-	bl puts 
 	@meter rutina random
 	
 	mov r1,#1
@@ -97,32 +79,14 @@ ciclo:
 	b continuacionCicloMain
 	
 continuacionCicloMain:
-	cmp r7,#0
-	beq etArte
+
+	ldr r0,=turno1
+	bl puts 
 	
-	cmp r7,#1
-	beq etArte
+	b pregunta1Arte
 	
-	cmp r7,#2
-	beq etLiteratura
-	
-	cmp r7,#3
-	beq etGeografia
-	
-	cmp r7,#4
-	beq etCiencia
-	
-	cmp r7,#5
-	beq etHistoria
-	
-	cmp r7,#6
-	beq etEntretenimiento
-	
-	cmp r7,#7
-	beq etDeportes
-	
-	
-	b salir
+	/*cmp r7,#0
+	beq etArte*/
 	
 	
 	
@@ -140,293 +104,43 @@ salir: 						/* etiqueta de salida*/
 
 	mov r7,#1
 	swi 0
-	
-	
-@------------------------------------Seccion de seleccion de pregunta
-etArte:
-	ldr r0,=arte
-	bl puts
-	
-	
-	ldr r0,=ingreseNumero
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11, #1
-	beq pregunta1Arte
-	
-	cmp r11, #2
-	beq pregunta2Arte
-	
-	cmp r11, #3
-	beq pregunta3Arte
-	
-	cmp r11, #4
-	beq pregunta4Arte
-	
-	cmp r11, #5
-	beq pregunta5Arte
-	
-	cmp r11, #6
-	beq pregunta6Arte
-	
-	cmp r11, #7
-	beq pregunta7Arte
-	
-	b numIncorrecto
-	
-etLiteratura:
-	ldr r0,=literatura
-	bl puts
-	ldr r0,=ingreseNumero
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11, #1
-	beq pregunta1Literatura
-	
-	cmp r11, #2
-	beq pregunta2Literatura
-	
-	cmp r11, #3
-	beq pregunta3Literatura
-	
-	cmp r11, #4
-	beq pregunta4Literatura
-	
-	cmp r11, #5
-	beq pregunta5Literatura
-	
-	cmp r11, #6
-	beq pregunta6Literatura
-	
-	cmp r11, #7
-	beq pregunta7Literatura
-	
-	b numIncorrecto
 
-etGeografia:
-	ldr r0,=geografia
-	bl puts
-	ldr r0,=ingreseNumero
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11, #1
-	beq pregunta1Geografia
-	
-	cmp r11, #2
-	beq pregunta2Geografia
-	
-	cmp r11, #3
-	beq pregunta3Geografia
-	
-	cmp r11, #4
-	beq pregunta4Geografia
-	
-	cmp r11, #5
-	beq pregunta5Geografia
-	
-	cmp r11, #6
-	beq pregunta6Geografia
-	
-	cmp r11, #7
-	beq pregunta7Geografia
-	
-	b numIncorrecto
-
-etCiencia:
-	ldr r0,=ciencia
-	bl puts
-	ldr r0,=ingreseNumero
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11, #1
-	beq pregunta1Ciencia
-	
-	cmp r11, #2
-	beq pregunta2Ciencia
-	
-	cmp r11, #3
-	beq pregunta3Ciencia
-	
-	cmp r11, #4
-	beq pregunta4Ciencia
-	
-	cmp r11, #5
-	beq pregunta5Ciencia
-	
-	cmp r11, #6
-	beq pregunta6Ciencia
-	
-	cmp r11, #7
-	beq pregunta7Ciencia
-	
-	b numIncorrecto
-
-etHistoria:
-	ldr r0,=historia
-	bl puts
-	ldr r0,=ingreseNumero
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11, #1
-	beq pregunta1Historia
-	
-	cmp r11, #2
-	beq pregunta2Historia
-	
-	cmp r11, #3
-	beq pregunta3Historia
-	
-	cmp r11, #4
-	beq pregunta4Historia
-	
-	cmp r11, #5
-	beq pregunta5Historia
-	
-	cmp r11, #6
-	beq pregunta6Historia
-	
-	cmp r11, #7
-	beq pregunta7Historia
-	
-	b numIncorrecto
-
-etEntretenimiento:
-	ldr r0,=entretenimiento
-	bl puts
-	ldr r0,=ingreseNumero
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11, #1
-	beq pregunta1Entretenimiento
-	
-	cmp r11, #2
-	beq pregunta2Entretenimiento
-	
-	cmp r11, #3
-	beq pregunta3Entretenimiento
-	
-	cmp r11, #4
-	beq pregunta4Entretenimiento
-	
-	cmp r11, #5
-	beq pregunta5Entretenimiento
-	
-	cmp r11, #6
-	beq pregunta6Entretenimiento
-	
-	cmp r11, #7
-	beq pregunta7Entretenimiento
-	
-	b numIncorrecto
-
-etDeportes:
-	ldr r0,=deportes
-	bl puts
-	ldr r0,=ingreseNumero
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11, #1
-	beq pregunta1Deportes
-	
-	cmp r11, #2
-	beq pregunta2Deportes
-	
-	cmp r11, #3
-	beq pregunta3Deportes
-	
-	cmp r11, #4
-	beq pregunta4Deportes
-	
-	cmp r11, #5
-	beq pregunta5Deportes
-	
-	cmp r11, #6
-	beq pregunta6Deportes
-	
-	cmp r11, #7
-	beq pregunta7Deportes
-	
-	b numIncorrecto
-	
-	
-	
-	
-@---------------------------------------Seccion de validacion de preguntas y respuestas
+@---------------------------------------Seccion de validacion de preguntas y respuestas------ARTE
 pregunta1Arte:
-	ldr r0,=pregunta1
+	ldr r0,=arte					/* Muestra el mensaje de arte */
+	bl puts
+	ldr r0,=pregunta1				/* Muestra la pregunta 1 de arte */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* Lee la respuesta ingresada */
 	
 	ldr r8,=entrada1
 	
-	ldr r11,[r8]
+	ldr r11,[r8]					/* Carga el valor de la respuesta ingresada */
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncArte1					/* Incorrecta si es 1 */
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorArte1					/* Correcta si es 2 */
 	
-	b numIncorrecto
+	b numIncorrecto					/* Error si no ha ingresado ninguno de los valores indicados */
+	
+resCorArte1:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	b pregunta2Arte					/* pregunta 2 arte */
+	
+resIncArte1:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta2Arte					/* Pregunta 2 arte */
+
 	
 pregunta2Arte:
 	ldr r0,=pregunta2
@@ -439,11 +153,25 @@ pregunta2Arte:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncArte2
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorArte2
 	
 	b numIncorrecto
+	
+resCorArte2:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	b pregunta3Arte					/* pregunta 2 arte */
+	
+resIncArte2:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta3Arte		
+
 pregunta3Arte:
 	ldr r0,=pregunta3
 	bl puts
@@ -457,11 +185,27 @@ pregunta3Arte:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncArte3
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorArte3
 	
 	b numIncorrecto
+	
+resCorArte3:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaArteJ1
+	
+	bne pregunta4Arte					/* pregunta 2 arte */
+	
+resIncArte3:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta4Arte	
 	
 pregunta4Arte:
 	ldr r0,=pregunta4
@@ -476,11 +220,27 @@ pregunta4Arte:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncArte4
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorArte4
 	
 	b numIncorrecto
+	
+resCorArte4:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaArteJ1
+	
+	bne pregunta5Arte					/* pregunta 2 arte */
+	
+resIncArte4:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta5Arte	
 
 pregunta5Arte:
 	ldr r0,=pregunta5
@@ -495,51 +255,48 @@ pregunta5Arte:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorArte5
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncArte5
 	
 	b numIncorrecto
 	
-pregunta6Arte:
-	ldr r0,=pregunta6
+resCorArte5:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaArteJ1
+	
+	bne pregunta1Literatura				/* pregunta 2 arte */
+	
+resIncArte5:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
+
+	b pregunta1Literatura	
+
+ganaArteJ1:
+	ldr r0,=ganarCatArte
+	bl puts 
 	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
+	add r4,r4,#1
+	ldr r0,=personajesGanados
+	mov r1,r4
+	bl printf 
+		
+	b pregunta1Literatura
 	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaIncorrecta
-	cmp r11,#2
-	beq respuestaCorrecta
-	
-	b numIncorrecto
-	
-pregunta7Arte:
-	ldr r0,=preguntaE1
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaIncorrecta
-	cmp r11,#2
-	beq respuestaCorrecta
-	
-	b numIncorrecto
-	
+@---------------------------------------Seccion de validacion de preguntas y respuestas------LITERATURA	
+
 pregunta1Literatura:
+	ldr r0,=turno2
+	bl puts
+	
+	ldr r0,=literatura
+	bl puts
+	
 	ldr r0,=pregunta7
 	bl puts
 	
@@ -552,11 +309,28 @@ pregunta1Literatura:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorLit1
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncLit1
 	
 	b numIncorrecto
+	
+resCorLit1:
+	
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaLiteraturaJ2
+	
+	bne pregunta2Literatura					/* pregunta 2 arte */
+	
+resIncLit1:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta2Literatura	
 
 pregunta2Literatura:
 	ldr r0,=pregunta8
@@ -571,11 +345,27 @@ pregunta2Literatura:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorLit2
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncLit2
 	
 	b numIncorrecto
+	
+resCorLit2:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaLiteraturaJ2
+	
+	bne pregunta3Literatura					/* pregunta 2 arte */
+	
+resIncLit2:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta3Literatura	
 
 pregunta3Literatura:
 	ldr r0,=pregunta9
@@ -590,11 +380,27 @@ pregunta3Literatura:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorLit3
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncLit3
 	
 	b numIncorrecto
+	
+resCorLit3:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaLiteraturaJ2
+	
+	bne pregunta4Literatura					/* pregunta 2 arte */
+	
+resIncLit3:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta4Literatura	
 
 pregunta4Literatura:
 	ldr r0,=pregunta10
@@ -609,12 +415,28 @@ pregunta4Literatura:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncLit4
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorLit4
 	
 	b numIncorrecto
+	
+resCorLit4:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaLiteraturaJ2
+	
+	bne pregunta5Literatura					/* pregunta 2 arte */
+	
+resIncLit4:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta5Literatura	
 
 pregunta5Literatura:
 	ldr r0,=pregunta11
@@ -629,52 +451,48 @@ pregunta5Literatura:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorLit5
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncLit5
 	
 	b numIncorrecto
-
-pregunta6Literatura:
-	ldr r0,=pregunta12
+	
+resCorLit5:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaLiteraturaJ2
+	
+	bne pregunta1Geografia				/* pregunta 2 arte */
+	
+resIncLit5:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaCorrecta
-	cmp r11,#2
-	beq respuestaIncorrecta
-	
-	b numIncorrecto
 
-pregunta7Literatura:
-	ldr r0,=preguntaE2
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaIncorrecta
-	
-	cmp r11,#2
-	beq respuestaCorrecta
-	
-	b numIncorrecto
+	b pregunta1Geografia
 
+ganaLiteraturaJ2:
+	ldr r0,=ganarCatLiteratura
+	bl puts 
+	
+	add r5,r5,#1
+	ldr r0,=personajesGanados
+	mov r1,r5
+	bl printf 
+		
+	b pregunta1Geografia
+
+@---------------------------------------Seccion de validacion de preguntas y respuestas------GEOGRAFIA	
 pregunta1Geografia:
+	mov r6,#0
+	ldr r0,=turno1
+	bl puts
+	
+	ldr r0,=geografia
+	bl puts
+
 	ldr r0,=pregunta13
 	bl puts
 	
@@ -687,11 +505,27 @@ pregunta1Geografia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorGeo1
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncGeo1
 	
 	b numIncorrecto
+	
+resCorGeo1:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaGeografiaJ1
+	
+	bne pregunta2Geografia				/* pregunta 2 arte */
+	
+resIncGeo1:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta2Geografia
 
 pregunta2Geografia:
 	ldr r0,=pregunta14
@@ -706,11 +540,27 @@ pregunta2Geografia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorGeo2
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncGeo2
 	
 	b numIncorrecto
+	
+resCorGeo2:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaGeografiaJ1
+	
+	bne pregunta3Geografia				/* pregunta 2 arte */
+	
+resIncGeo2:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta3Geografia
 
 pregunta3Geografia:
 	ldr r0,=pregunta15
@@ -725,12 +575,28 @@ pregunta3Geografia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncGeo3
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorGeo3
 	
 	b numIncorrecto
+	
+resCorGeo3:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaGeografiaJ1
+	
+	bne pregunta4Geografia				/* pregunta 2 arte */
+	
+resIncGeo3:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta4Geografia
 
 pregunta4Geografia:
 	ldr r0,=pregunta16
@@ -745,12 +611,28 @@ pregunta4Geografia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncGeo4
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorGeo4
 	
 	b numIncorrecto
+	
+resCorGeo4:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaGeografiaJ1
+	
+	bne pregunta5Geografia				/* pregunta 2 arte */
+	
+resIncGeo4:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta5Geografia
 
 pregunta5Geografia:
 	ldr r0,=pregunta17
@@ -765,52 +647,48 @@ pregunta5Geografia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorGeo5
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncGeo5
 	
 	b numIncorrecto
-
-pregunta6Geografia:
-	ldr r0,=pregunta18
+	
+resCorGeo5:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaGeografiaJ1
+	
+	bne pregunta1Ciencia			/* pregunta 2 arte */
+	
+resIncGeo5:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaCorrecta
-	cmp r11,#2
-	beq respuestaIncorrecta
-	
-	b numIncorrecto
 
-pregunta7Geografia:
-	ldr r0,=preguntaE3
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaIncorrecta
-	
-	cmp r11,#2
-	beq respuestaCorrecta
-	
-	b numIncorrecto
+	b pregunta1Ciencia
 
+ganaGeografiaJ1:
+	ldr r0,=ganarCatGeografia
+	bl puts 
+	
+	add r4,r4,#1
+	ldr r0,=personajesGanados
+	mov r1,r4
+	bl printf 
+		
+	b pregunta1Ciencia
+
+@---------------------------------------Seccion de validacion de preguntas y respuestas------Ciencia	
 pregunta1Ciencia:
+	mov r7,#0
+	ldr r0,=turno2
+	bl puts
+	
+	ldr r0,=ciencia
+	bl puts
+	
 	ldr r0,=pregunta19
 	bl puts
 	
@@ -823,11 +701,27 @@ pregunta1Ciencia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorCie1
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncCie1
 	
 	b numIncorrecto
+	
+resCorCie1:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaCienciaJ2
+	
+	bne pregunta2Ciencia			/* pregunta 2 arte */
+	
+resIncCie1:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta2Ciencia
 
 pregunta2Ciencia:
 	ldr r0,=pregunta20
@@ -842,12 +736,28 @@ pregunta2Ciencia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncCie2
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorCie2
 	
 	b numIncorrecto
+	
+resCorCie2:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaCienciaJ2
+	
+	bne pregunta3Ciencia			/* pregunta 2 arte */
+	
+resIncCie2:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta3Ciencia
 
 pregunta3Ciencia:
 	ldr r0,=pregunta21
@@ -862,11 +772,27 @@ pregunta3Ciencia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorCie3
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncCie3
 	
 	b numIncorrecto
+	
+resCorCie3:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaCienciaJ2
+	
+	bne pregunta4Ciencia			/* pregunta 2 arte */
+	
+resIncCie3:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta4Ciencia
 
 pregunta4Ciencia:
 	ldr r0,=pregunta22
@@ -881,11 +807,27 @@ pregunta4Ciencia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorCie4
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncCie4
 	
 	b numIncorrecto
+	
+resCorCie4:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaCienciaJ2
+	
+	bne pregunta5Ciencia			/* pregunta 2 arte */
+	
+resIncCie4:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta5Ciencia
 
 pregunta5Ciencia:
 	ldr r0,=pregunta23
@@ -900,51 +842,49 @@ pregunta5Ciencia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorCie5
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncCie5
 	
 	b numIncorrecto
 
-pregunta6Ciencia:
-	ldr r0,=pregunta24
+resCorCie5:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaCienciaJ2
+	
+	bne pregunta1Historia			/* pregunta 2 arte */
+	
+resIncCie5:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaCorrecta
-	cmp r11,#2
-	beq respuestaIncorrecta
-	
-	b numIncorrecto
 
-pregunta7Ciencia:
-	ldr r0,=preguntaE4
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaCorrecta
-	cmp r11,#2
-	beq respuestaIncorrecta
-	
-	b numIncorrecto
+	b pregunta1Historia
 
+ganaCienciaJ2:
+	ldr r0,=ganarCatCiencia
+	bl puts 
+	
+	add r5,r5,#1
+	ldr r0,=personajesGanados
+	mov r1,r5
+	bl printf 
+		
+	b pregunta1Historia
+	
+
+@---------------------------------------Seccion de validacion de preguntas y respuestas------HISTORIA
 pregunta1Historia:
+	mov r6,#0
+	ldr r0,=turno1
+	bl puts
+	
+	ldr r0,=historia
+	bl puts
+	
 	ldr r0,=pregunta25
 	bl puts
 	
@@ -957,12 +897,28 @@ pregunta1Historia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncHis1
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorHis1
 	
 	b numIncorrecto
+	
+resCorHis1:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaHistoriaJ1
+	
+	bne pregunta2Historia		/* pregunta 2 arte */
+	
+resIncHis1:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta2Historia
 
 pregunta2Historia:
 	ldr r0,=pregunta26
@@ -977,12 +933,28 @@ pregunta2Historia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncHis2
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorHis2
 	
 	b numIncorrecto
+	
+resCorHis2:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaHistoriaJ1
+	
+	bne pregunta3Historia		/* pregunta 2 arte */
+	
+resIncHis2:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta3Historia
 
 pregunta3Historia:
 	ldr r0,=pregunta27
@@ -997,11 +969,27 @@ pregunta3Historia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorHis3
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncHis3
 	
 	b numIncorrecto
+	
+resCorHis3:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaHistoriaJ1
+	
+	bne pregunta4Historia		/* pregunta 2 arte */
+	
+resIncHis3:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta4Historia
 
 pregunta4Historia:
 	ldr r0,=pregunta28
@@ -1016,11 +1004,27 @@ pregunta4Historia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorHis4
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncHis4
 	
 	b numIncorrecto
+	
+resCorHis4:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaHistoriaJ1
+	
+	bne pregunta5Historia		/* pregunta 2 arte */
+	
+resIncHis4:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta5Historia
 
 pregunta5Historia:
 	ldr r0,=pregunta29
@@ -1035,54 +1039,52 @@ pregunta5Historia:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncHis5
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorHis5
 	
 	b numIncorrecto
-
-pregunta6Historia:
-	ldr r0,=pregunta30
+	
+resCorHis5:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaHistoriaJ1
+	
+	bne pregunta1Entretenimiento		/* pregunta 2 arte */
+	
+resIncHis5:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaIncorrecta
-	
-	cmp r11,#2
-	beq respuestaCorrecta
-	
-	b numIncorrecto
 
-pregunta7Historia:
-	ldr r0,=preguntaE5
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaIncorrecta
-	
-	cmp r11,#2
-	beq respuestaCorrecta
-	
-	b numIncorrecto
+	b pregunta1Entretenimiento
 
+ganaHistoriaJ1:
+	ldr r0,=ganarCatHistoria
+	bl puts 
+	
+	add r4,r4,#1
+	ldr r0,=personajesGanados
+	mov r1,r4
+	bl printf 
+	
+	cmp r4,#3
+	beq salidaJ1
+		
+	b pregunta1Entretenimiento
+
+@---------------------------------------Seccion de validacion de preguntas y respuestas------ENTRETENIMIENTO	
 pregunta1Entretenimiento:
+	mov r7,#0
+	ldr r0,=turno2
+	bl puts
+	
+	ldr r0,=entretenimiento
+	bl puts
+	
 	ldr r0,=pregunta31
 	bl puts
 	
@@ -1095,11 +1097,27 @@ pregunta1Entretenimiento:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorEnt1
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncEnt1
 	
 	b numIncorrecto
+	
+resCorEnt1:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaEntretenimientoJ2
+	
+	bne pregunta2Entretenimiento		/* pregunta 2 arte */
+	
+resIncEnt1:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta2Entretenimiento
 
 pregunta2Entretenimiento:
 	ldr r0,=pregunta32
@@ -1114,11 +1132,27 @@ pregunta2Entretenimiento:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorEnt2
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncEnt2
 	
 	b numIncorrecto
+	
+resCorEnt2:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaEntretenimientoJ2
+	
+	bne pregunta3Entretenimiento		/* pregunta 2 arte */
+	
+resIncEnt2:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta3Entretenimiento
 
 pregunta3Entretenimiento:
 	ldr r0,=pregunta33
@@ -1133,12 +1167,28 @@ pregunta3Entretenimiento:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncEnt3
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorEnt3
 	
 	b numIncorrecto
+	
+resCorEnt3:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaEntretenimientoJ2
+	
+	bne pregunta4Entretenimiento		/* pregunta 2 arte */
+	
+resIncEnt3:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta4Entretenimiento
 
 pregunta4Entretenimiento:
 	ldr r0,=pregunta34
@@ -1153,12 +1203,28 @@ pregunta4Entretenimiento:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncEnt4
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorEnt4
 	
 	b numIncorrecto
+	
+resCorEnt4:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaEntretenimientoJ2
+	
+	bne pregunta5Entretenimiento		/* pregunta 2 arte */
+	
+resIncEnt4:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta5Entretenimiento
 
 pregunta5Entretenimiento:
 	ldr r0,=pregunta35
@@ -1173,52 +1239,51 @@ pregunta5Entretenimiento:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorEnt5
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncEnt5
 	
 	b numIncorrecto
-
-pregunta6Entretenimiento:
-	ldr r0,=pregunta36
+	
+resCorEnt5:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r7,r7,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaEntretenimientoJ2
+	
+	bne pregunta1Deportes		/* pregunta 2 arte */
+	
+resIncEnt5:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaIncorrecta
-	
-	cmp r11,#2
-	beq respuestaCorrecta
-	
-	b numIncorrecto
 
-pregunta7Entretenimiento:
-	ldr r0,=preguntaE6
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaCorrecta
-	cmp r11,#2
-	beq respuestaIncorrecta
-	
-	b numIncorrecto
+	b pregunta1Deportes
 
+ganaEntretenimientoJ2:
+	ldr r0,=ganarCatGeografia
+	bl puts 
+	
+	add r5,r5,#1
+	ldr r0,=personajesGanados
+	mov r1,r5
+	bl printf 
+	
+	cmp r5,#3
+	beq salidaJ2
+		
+	b pregunta1Deportes
+
+@---------------------------------------Seccion de validacion de preguntas y respuestas------DEPORTES	
 pregunta1Deportes:
+	mov r6,#0
+	ldr r0,=turno1
+	bl puts
+	
+	ldr r0,=deportes
+	bl puts
+	
 	ldr r0,=pregunta37
 	bl puts
 	
@@ -1231,12 +1296,28 @@ pregunta1Deportes:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncDep1
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorDep1
 	
 	b numIncorrecto
+	
+resCorDep1:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaDeportesJ1
+	
+	bne pregunta2Deportes		/* pregunta 2 arte */
+	
+resIncDep1:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta2Deportes
 
 pregunta2Deportes:
 	ldr r0,=pregunta38
@@ -1251,11 +1332,27 @@ pregunta2Deportes:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorDep2
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncDep2
 	
 	b numIncorrecto
+	
+resCorDep2:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaDeportesJ1
+	
+	bne pregunta3Deportes		/* pregunta 2 arte */
+	
+resIncDep2:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta3Deportes
 
 pregunta3Deportes:
 	ldr r0,=pregunta39
@@ -1270,11 +1367,27 @@ pregunta3Deportes:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorDep3
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncDep3
 	
 	b numIncorrecto
+	
+resCorDep3:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaDeportesJ1
+	
+	bne pregunta4Deportes		/* pregunta 2 arte */
+	
+resIncDep3:	
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta4Deportes
 
 pregunta4Deportes:
 	ldr r0,=pregunta40
@@ -1289,11 +1402,27 @@ pregunta4Deportes:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaCorrecta
+	beq resCorDep4
 	cmp r11,#2
-	beq respuestaIncorrecta
+	beq resIncDep4
 	
 	b numIncorrecto
+	
+resCorDep4:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
+	bl puts 
+	
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaDeportesJ1
+	
+	bne pregunta5Deportes		/* pregunta 2 arte */
+	
+resIncDep4:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b pregunta5Deportes
 
 pregunta5Deportes:
 	ldr r0,=pregunta41
@@ -1308,84 +1437,97 @@ pregunta5Deportes:
 	ldr r11,[r8]
 	
 	cmp r11,#1
-	beq respuestaIncorrecta
+	beq resIncDep5
 	
 	cmp r11,#2
-	beq respuestaCorrecta
+	beq resCorDep5
 	
 	b numIncorrecto
 
-pregunta6Deportes:
-	ldr r0,=pregunta42
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaCorrecta
-	
-	cmp r11,#2
-	beq respuestaIncorrecta
-	
-	b numIncorrecto
-
-pregunta7Deportes:
-	ldr r0,=preguntaE7
-	bl puts
-	
-	ldr r0,=formato
-	ldr r1,=entrada1
-	bl scanf 
-	
-	ldr r8,=entrada1
-	
-	ldr r11,[r8]
-	
-	cmp r11,#1
-	beq respuestaIncorrecta
-	
-	cmp r11,#2
-	beq respuestaCorrecta
-	
-	b numIncorrecto
-
-
-	
-respuestaCorrecta:
-	ldr r0,=rCorrecta
+resCorDep5:
+	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
 	bl puts 
 	
-	b main2
-respuestaIncorrecta:
-	ldr r0,=rIncorrecta
+	add r6,r6,#1					/* Respuesta correcta, sumar al contador de respuestas correctas */
+	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
+	beq ganaDeportesJ1
+	
+	bne salir		/* pregunta 2 arte */
+	
+resIncDep5:		
+	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
+	bl puts
+
+	b salir
+
+ganaDeportesJ1:
+	ldr r0,=ganarCatDeportes
+	bl puts 
+	
+	add r4,r4,#1
+	ldr r0,=personajesGanados
+	mov r1,r4
+	bl printf 
+		
+	b salir
+	
+ningunoGana:
+	ldr r0,=sinGanador
+	bl puts 
+	
+	ldr r0,=formato
+	ldr r1,=entrada1
+	bl scanf 
+	
+	ldr r8,=entrada1
+	
+	ldr r11,[r8]
+	
+	cmp r11,#1
+	beq pregunta1Arte
+	
+	cmp r11,#2
+	beq salir
+	
+	b numIncorrecto
+	
+
+salidaJ1:
+	ldr r0,=salidaprimero		/* Mensaje de felicitaciones al primer personaje */
 	bl puts
 	
-	b main2
-
+	b salir						/* Salida */
+	
+salidaJ2:
+	ldr r0,=salidasegundo		/* Mensaje de felicitaciones al segundo personaje */
+	bl puts						
+	
+	b salir						/* Salida */
 
 .data
 .align 2
-
-entrada:	.asciz "Bienvenido al juego"
+entrada:	.asciz " -------------------------------------\n| !Bienvenido al juego de Trivia ARM! |\n -------------------------------------"
 Instrucciones:	.asciz "El juego consiste en una trivia en la cual usted y su oponente debera contestar correctamente las preguntas para obtener la ventaja"
-instrucciones2:	.asciz "Debera responder correctamente 3 preguntas de la misma categoria para obtener un punto, el primero el obtener 3 sera el ganador"
-instrucciones3:	.asciz "No pueden obtener mas puntos de la misma categoria"
+instrucciones2:	.asciz "Debera responder correctamente 3 preguntas de la misma categoria para obtener un personaje, ¡el primero el obtener 3 sera el ganador!"
+instrucciones3:	.asciz "\n*************************************************************\n ADVERTENCIA \nPor favor no ingrese letras ni numeros que no se encuentren entre los valores indicados\n*************************************************************\n"
 instrucciones4:	.asciz "¿Desea comenzar a jugar? Selecciones la opcion correcta! \n1. Si!\n2. No, quiero salir del juego"
-incorrecto:	.asciz	"Ha ingresado un valor incorrecto, ¡intentelo de nuevo!"
-turno1:	.asciz	"Es el turno del primer jugador!"
-turno2:	.asciz	"Es el turno del segundo jugador!"
-ingreseNumero:	.asciz	"Ingrese el numero: "
-rCorrecta:	.asciz	"Correcto"
-rIncorrecta:	.asciz	"Incorrecto"
-formatod: .asciz	"%s"
+incorrecto:	.asciz	"\n*************************************************************\n¡Ha ingresado un valor incorrecto! :O \nLo lamento, debera regresesar al inicio :( \nCumpla con la advertencia por favor :D\n*************************************************************\n"
+turno1:	.asciz	"\n--------------------------------------------------------------------------\nEs el turno del primer jugador! Aprovecha a tener la mayor cantidad de respuestas correctas! No te detengas hasta terminar la categoria que te ha tocado!\n--------------------------------------------------------------------------\n"
+turno2:	.asciz	"\n--------------------------------------------------------------------------\nEs el turno del segundo jugador! Aprovecha a tener la mayor cantidad de respuestas correctas! No te detengas hasta terminar la categoria que te ha tocado!\n--------------------------------------------------------------------------\n"
+rCorrecta:	.asciz	"Respuesta correcta!"
+rIncorrecta:	.asciz	"Respuesta incorrecta :("
+ganarCatArte:	.asciz	"Ha ganado el personaje de la categoria ARTE!"
+ganarCatLiteratura:	.asciz "*************\nHa ganado el personaje de la categoria LITERATURA!"
+ganarCatGeografia:	.asciz	"*************\nHa ganado el personaje de la categoria GEOGRAFIA!"
+ganarCatCiencia:	.asciz	"*************\nHa ganado el personaje de la categoria CIENCIA!"
+ganarCatHistoria:	.asciz	"*************\nHa ganado el personaje de la categoria HISTORIA!"
+ganarCatEntretenimiento:	.asciz	"*************\nHa ganado el personaje de la categoria entretenimiento!"
+ganarCatDeportes:	.asciz	"*************\nHa ganado el personaje de la categoria deportes!"
+personajesGanados:	.asciz	"*************\nLa cantidad de personajes que ha ganado es: %d\n"
+salidaprimero:	.asciz	"\n--------------------------------------------------------------------------\nFelicidades jugador 1! Ha ganado! Esperamos que juegue de nuevo\n--------------------------------------------------------------------------\n"
+salidasegundo:	.asciz	"\n--------------------------------------------------------------------------\nFelicidades jugador 2! Ha ganado! Esperamos que juegue de nuevo\n--------------------------------------------------------------------------\n"
+sinGanador:	.asciz	"Ninguno ha ganado :( ¿Que desea hacer?\n1. Intentarlo de nuevo!\n2. Salir del juego"
 entrada1:	.word	0
-entrada2:	.word	0
 formato:	.asciz	"%d"
 
 arte:	.asciz	"¡Arte!"
@@ -1398,173 +1540,59 @@ deportes:	.asciz	"¡Deportes!"
 
 mensajeSalida: .asciz "\n--Gracias por utilizar el programa!"
 
-
 @Primeras 6 preguntas de arte
 pregunta1:	.asciz	"¿A que edad murio Mozart?\n1. 68\n2. 35"
-pregunta1r1:	.asciz	"68"
-pregunta1r2:	.asciz	"35"	@correcta
 pregunta2:	.asciz	"¿Que instrumento tocaba Vivaldi?\n1. Piano\n2. Violin"
-pregunta2r1:	.asciz	"Piano"
-pregunta2r2:	.asciz	"Violin"	@correcta
 pregunta3:	.asciz	"¿Que instrumento tocaba franz Liszt?\n1.Violin\n2. Piano"
-pregunta3r1:	.asciz	"Violin"
-pregunta3r2:	.asciz	"Piano"	@correcta
 pregunta4:	.asciz	"¿Que pasa con el cuadro de La Balsa de Medusa?\n1. Ningun artista la reclamo\n2. Cada anio se oscurece"
-pregunta4r1:	.asciz	"Ningun artista la reclamo"
-pregunta4r2:	.asciz	"Cada anio se oscurece"	@correcta
 pregunta5:	.asciz	"¿Quien pinto La Santa Cena?\n1. Leonardo Da Vinci\n2. Vincent Van Gogh"
-pregunta5r1:	.asciz	"Leonardo Da Vinci"	@correcta
-pregunta5r2:	.asciz	"Vincent Van Gogh"
 pregunta6:	.asciz	"¿Quien pinto la Mona Lisa?\n1. Pablo Picasso\n2. Leonardo Da Vinci"
-pregunta6r1:	.asciz	"Pablo Picasso"	
-pregunta6r2:	.asciz	"Leonardo Da Vinci"	@correcta
 preguntaE1:	.asciz	"¿Cual es el ultimo capitulo de la biblia catolica?\n1. Exodo\n2. Apocalipsis"
-preguntaE1r1:	.asciz	"Exodo"	
-preguntaE1r2:	.asciz	"Apocalipsis"	@correcta
-
 @Primeras 6 preguntas de literatura
 pregunta7:	.asciz	"¿Quien escribio el poema de Lo Fatal?\n1. Ruben Dario\n2. Antonio Machado"
-pregunta7r1:	.asciz	"Ruben Dario"	@correcta
-pregunta7r2:	.asciz	"Antonio Machado"
 pregunta8:	.asciz	"¿Quien escribio la metamorfosis?\n1. Franz Kafka\n2. Magda Szabo"
-pregunta8r1:	.asciz	"Franz Kafka"	@correcta
-pregunta8r2:	.asciz	"Magda Szabo"
 pregunta9:	.asciz	"¿Cual obra dio comienzo al modernismo?\n1. Azul\n2. Cantos de vida y de esperanza"
-pregunta9r1:	.asciz	"Azul"	@correcta
-pregunta9r2:	.asciz	"Cantos de vida y de esperanza"
 pregunta10:	.asciz	"¿Cual era el primer nombre de Neruda?\n1. Carlo\n2. Pablo"
-pregunta10r1:	.asciz	"Carlo"
-pregunta10r2:	.asciz	"Pablo"	@correcta
 pregunta11:	.asciz	"¿Quien fue el autor de la obra Hamlet?\n1. William Shakespeare\n2. Michael Jackson"
-pregunta11r1:	.asciz	"William Shakespeare"	@correcta
-pregunta11r2:	.asciz	"Michael Jackson"
 pregunta12:	.asciz	"¿Quién escribió la Iliada?\n1. Homero\n2. Herodoto"
-pregunta12r1:	.asciz	"Homero"	@correcta
-pregunta12r2:	.asciz	"Herodoto"
 preguntaE2:	.asciz	"¿Como se llama el autor El cuervo?\n1. Roberto Mazariegos\n2. Edgar Allan Poe"
-preguntaE2r1:	.asciz	"Roberto Mazariegos"
-preguntaE2r2:	.asciz	"Edgar Allan Poe"	@correcta
-
 @ primeras 6 preguntas de geografia
 pregunta13:	.asciz "¿Donde se ecuentra Helsinki?\n1. Finlandia\n2. Grecia"
-pregunta13r1:	.asciz "Finlandia" @correcta
-pregunta13r2:	.asciz "Grecia"
 pregunta14:	.asciz "¿Que pais producia katanas?\n1. Japon\n2. Corea"
-pregunta14r1:	.asciz "Japon" @correcta
-pregunta14r2:	.asciz "Corea"
 pregunta15:	.asciz "¿Que isla africana es de mayor tamaño?\n1. Seychelles\n2. Madagascar"
-pregunta15r1:	.asciz "Seychelles"
-pregunta15r2:	.asciz "Madagascar" @correcta
 pregunta16:	.asciz "¿Cuantas subdivisiones tiene Asia?\n1. 7\n2. 6"
-pregunta16r1:	.asciz "7"
-pregunta16r2:	.asciz "6" @correcta  
 pregunta17:	.asciz "¿Donde se encuentra la ciudad de Turin?\n1. Italia\n2. Francia"
-pregunta17r1:	.asciz "Italia" @correcta
-pregunta17r2:	.asciz "Francia"  
 pregunta18:	.asciz "¿Que estado de EEUU es una isla?\n1. Hawaii\n2. Florida"
-pregunta18r1:	.asciz "Hawaii" @correcta
-pregunta18r2:	.asciz "Florida" 
 preguntaE3:	.asciz	"¿Cuantos colores se encuentran en la bandera de Brasil?\n1. 5\n2. 4"
-preguntaE3r1:	.asciz	"5"
-preguntaE3r2:	.asciz	"4"	@correcta 
-
 @primeras 6 pregunts de Ciencia
 pregunta19:	.asciz "¿La mitocondria tiene su propio ADN?\n1. Verdadero\n2. Falso"
-pregunta19r1:	.asciz "Verdadero" @correcto
-pregunta19r2:	.asciz "Falso"
 pregunta20:	.asciz "El ADN eucariotico es: \n1. Circular\n2. Lineal"
-pregunta20r1:	.asciz "Circular"
-pregunta20r2:	.asciz "Lineal" @Correcto
 pregunta21:	.asciz "¿Que secuencia de ADN inicia la lectura?\n1. UAG\n2. UAA"
-pregunta21r1:	.asciz "AUG" @correcto
-pregunta21r2:	.asciz "UAA"
 pregunta22:	.asciz "¿Con que otro nombre se conoce a las orcas?\n1. Ballenas asesinas\n2. Gran blanca"
-pregunta22r1:	.asciz "Ballenas asesinas" @correcto
-pregunta22r2:	.asciz "Gran blanca"
 pregunta23:	.asciz "¿Quienes padecen andropausia?\n1. Hombres\n2. Mujeres"
-pregunta23r1:	.asciz "Hombres" @correcto
-pregunta23r2:	.asciz "Mujeres"
 pregunta24:	.asciz "¿De que estan compuestos los electrolitos?\n1. Sodio, potasio y cloruro\n2. Vitaminas"
-pregunta24r1:	.asciz "Sodio,potasio y cloruro" @correcto
-pregunta24r2:	.asciz "Vitaminas"
 preguntaE4:	.asciz	"¿Cuales son las siglas del oro en la tabla periodica?\n1. Au\n2. O"
-preguntaE4r1:	.asciz	"Au" @correcta
-preguntaE4r2:	.asciz	"O"	
-
 @primeras 6 de historia
 pregunta25:	.asciz "¿Quien fue el 16 presidente de EEUU?\n1. George Washington\n2. Abraham Lincoln"
-pregunta25r1:	.asciz "George Washington"
-pregunta25r2:	.asciz "Abraham Lincoln" @correcto
 pregunta26:	.asciz "¿Cuantos años goberno el presidente Rafel Carrera?\n1. 24\n2. 22"
-pregunta26r1:	.asciz "24"
-pregunta26r2:	.asciz "22" @correcto
 pregunta27:	.asciz "¿Como se llama la diosa griega primigenia de la noche?\n1. Nyx\n2. Eris"
-pregunta27r1:	.asciz "Nyx" @correcto
-pregunta27r2:	.asciz "Eris"
 pregunta28:	.asciz "¿Que imperio es identificado con las siglas SPQR?\n1. Imperio romano\n2. Imperio Mogol"
-pregunta28r1:	.asciz "Imperio romano" @correcto
-pregunta28r2:	.asciz "Imperio Mogol"
 pregunta29:	.asciz "¿Como llamaron a Canada los exploradores franceses?\n1. Canada\n2. La nueva Francia"
-pregunta29r1:	.asciz "Canada"
-pregunta29r2:	.asciz "La nueva francia" @correcto
 pregunta30:	.asciz "¿Quien fue el presidente de Guatemala en 2014?\n1. Jimmy Morales\n2. Otto Perez Molina"
-pregunta30r1:	.asciz "Jimmy Morales"
-pregunta30r2:	.asciz "Otto Perez Molina" @correcto
 preguntaE5:	.asciz	"¿Quien es el padre de letemaco?\n1. Quiron\n2. Ulises"
-preguntaE5r1:	.asciz	"Quiron"
-preguntaE5r2:	.asciz	"Ulises"	@correcta
-
 @Primeras 6 de entretenimiento
 pregunta31:	.asciz "¿En que pelicula muerte Luke Skywalker?\n1. Los ultimos jedi\n2. Rogue One"
-pregunta31r1:	.asciz "Los ultimos jedi" @correcto
-pregunta31r2:	.asciz "Rogue One"
 pregunta32:	.asciz "¿De que pais proviene la musica denomidada Kpop?\n1. Corea del Sur\n2. Corea del Norte"
-pregunta32r1:	.asciz "Corea del sur" @correcto
-pregunta32r2:	.asciz "Corea del norte"
 pregunta33:	.asciz "¿Quien es el maestro Roshi?\n1. Maestro de Veguetta\n2. Maestro de Goku en artes marciales"
-pregunta33r1:	.asciz "Maestro de Veguetta"
-pregunta33r2:	.asciz "Maestro de Goku en artes marciales" @correcto
 pregunta34:	.asciz "¿En cual de estos cuentos aparece un conejo blanco?\n1. Pinoccio\n2. Alicia y el pais de las maravillas"
-pregunta34r1:	.asciz "Pinoccio"
-pregunta34r2:	.asciz "Alicia y el pais de las maravillas" @correcto
 pregunta35:	.asciz "¿Que grupo canta la cancion de No Money?\n1. Galantys\n2. Galanties"
-pregunta35r1:	.asciz "Galantys" @correcto
-pregunta35r2:	.asciz "Galanties"
 pregunta36:	.asciz "¿Que es el anime?\n1. Animacion china\n2. Animacion Japonesa"
-pregunta36r1:	.asciz "Animacion china"
-pregunta36r2:	.asciz "Animacion Japonesa" @correcto
 preguntaE6:	.asciz	"¿Como se llama el entrenador de hercules?\n1. Phil\n2. Phelp"
-preguntaE6r1:	.asciz	"Phil" @correcta
-preguntaE6r2:	.asciz	"Phelp"	
-
 @primeras 6 de deportes
 pregunta37:	.asciz "¿Cual de estos jugadores es de Guatemala?\n1. Donovan\n2. Carlos Ruiz"
-pregunta37r1:	.asciz "Donovan"
-pregunta37r2:	.asciz "Carlos Ruiz" @correcto
 pregunta38:	.asciz "¿Quien fue el mejor futbolista antes del 2000?\n1. Maradona\n2. Herrador"
-pregunta38r1:	.asciz "Maradona" @correcto
-pregunta38r2:	.asciz "Herrador"
 pregunta39:	.asciz "¿Que pais es considerado como la naranja mecanica?\n1. Holanda\n2. Brasil"
-pregunta39r1:	.asciz "Holanda" @correcto
-pregunta39r2:	.asciz "Brasil"
 pregunta40:	.asciz "¿Que deporte practica Rafae Nadal?\n1. Tennis\n2. Natacion"
-pregunta40r1:	.asciz "Tennis" @correcto
-pregunta40r2:	.asciz "Natacion"
 pregunta41:	.asciz "¿Cual es la seleccion campeona de alemania 2006?\n1. Alemania\n2. Italia"
-pregunta41r1:	.asciz "Alemania"
-pregunta41r2:	.asciz "Italia" @correcto
 pregunta42:	.asciz "¿En cual de estos deportes No se usa raqueta?\n1. Esgrima\n2. Squash"
-pregunta42r1:	.asciz "Esgrima"
-pregunta42r2:	.asciz "Squash" @correcto
 preguntaE7:	.asciz	"¿Cuantas personas integran un grupo de voleyball?\n1. 4\n2. 6"
-preguntaE7r1:	.asciz	"4"
-preguntaE7r2:	.asciz	"6"	@correcta
-
-
-
-
-
-
-
-
-
