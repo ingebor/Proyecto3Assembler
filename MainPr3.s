@@ -3,12 +3,13 @@
 @Proyecto No 3, Trivia ARM
 @Andres Say 19705, Ayleen Rubio 19003
 
-.text
-.align 2
+@.text
+@.align 2
 .global main
-.type main,%function
+.func main
+@.type main,%function
 main:
-	stmfd sp!,{lr}
+	@stmfd sp!,{lr}
 	
 	cont .req r5
 	
@@ -24,11 +25,38 @@ main:
 	mov r3, #0 @contador de puntos del jugador 1
 	mov r4, #0 @contador de puntos del jugador 2
 	mov r6, #0 @decide si es el turno del jugador 1 o 2
+	
+	ldr r5,valorr5			/* inicia con 0 para cargar los contadores con 0 */
+	
+	vldr s1, [r5]			/* j1 arte */
+	vldr s2, [r5]			/* j1 literatura */
+	vldr s3, [r5]			/* j1 geografia */
+	vldr s4, [r5]			/* j1 ciencia */
+	vldr s5, [r5]			/* j1 historia */
+	vldr s6, [r5]			/* j1 entretenimiento */
+	vldr s7, [r5]			/* j1 deporte */
+	
+	vldr s8, [r5]			/* j2 arte */
+	vldr s9, [r5]			/* j2 literatura */
+	vldr s10, [r5]			/* j2 geografia */
+	vldr s11, [r5]			/* j2 ciencia */
+	vldr s12, [r5]			/* j2 historia */
+	vldr s13, [r5]			/* j2 entretenimiento */
+	vldr s14, [r5]			/* j2 deporte */
+	
+	ldr r10,valorNo7			/* ahora tiene el valor de 1 */
+	vldr s15, [r10]			/* para sumar 1 a los contadores */
+	
+	ldr r5,valorr10			/* ahora tiene el valor de 3 */
+	vldr s16, [r5]			/* para comparar si ya se tienen 3 puntos acumulados */
+	
+	mov r9, #1				/* categoria en la que se encuentra */
+	
 main2:
 	ldr r0,=instrucciones4
 	bl puts
 	
-	ldr r0,=formatod
+	ldr r0,=formato
 	ldr r1,=entrada1
 	bl scanf
 	
@@ -38,28 +66,28 @@ main2:
 	ldrb r11,[r8]
 	
 	
-	cmp r11,#'1'
+	cmp r11,#1
 	beq etArte
 	
-	cmp r11,#'2'
+	cmp r11,#2
 	beq etLiteratura
 	
-	cmp r11,#'3'
+	cmp r11,#3
 	beq etGeografia
 	
-	cmp r11,#'4'
+	cmp r11,#4
 	beq etCiencia
 	
-	cmp r11,#'5'
+	cmp r11,#5
 	beq etHistoria
 	
-	cmp r11,#'6'
+	cmp r11,#6
 	beq etEntretenimiento
 	
-	cmp r11,#'7'
+	cmp r11,#7
 	beq etDeportes
 	
-	cmp r11,#'8'
+	cmp r11,#8
 	beq salir
 	
 	b numIncorrecto
@@ -144,9 +172,9 @@ salir: 						/* etiqueta de salida*/
 	
 @------------------------------------Seccion de seleccion de pregunta
 etArte:
+	mov r9, r11
 	ldr r0,=arte
 	bl puts
-	
 	
 	ldr r0,=ingreseNumero
 	bl puts
@@ -183,6 +211,7 @@ etArte:
 	b numIncorrecto
 	
 etLiteratura:
+	mov r9, r11
 	ldr r0,=literatura
 	bl puts
 	ldr r0,=ingreseNumero
@@ -220,6 +249,7 @@ etLiteratura:
 	b numIncorrecto
 
 etGeografia:
+	mov r9, r11
 	ldr r0,=geografia
 	bl puts
 	ldr r0,=ingreseNumero
@@ -257,6 +287,7 @@ etGeografia:
 	b numIncorrecto
 
 etCiencia:
+	mov r9, r11
 	ldr r0,=ciencia
 	bl puts
 	ldr r0,=ingreseNumero
@@ -294,6 +325,7 @@ etCiencia:
 	b numIncorrecto
 
 etHistoria:
+	mov r9, r11
 	ldr r0,=historia
 	bl puts
 	ldr r0,=ingreseNumero
@@ -331,6 +363,7 @@ etHistoria:
 	b numIncorrecto
 
 etEntretenimiento:
+	mov r9, r11
 	ldr r0,=entretenimiento
 	bl puts
 	ldr r0,=ingreseNumero
@@ -368,6 +401,7 @@ etEntretenimiento:
 	b numIncorrecto
 
 etDeportes:
+	mov r9, r11
 	ldr r0,=deportes
 	bl puts
 	ldr r0,=ingreseNumero
@@ -1355,23 +1389,237 @@ pregunta7Deportes:
 	
 	b numIncorrecto
 
-
+@----------------------------------------Verificar correcto o incorrecto
 	
 respuestaCorrecta:
 	ldr r0,=rCorrecta
 	bl puts 
 	
-	b main2
+	/*ldr r0,=valorDeR9
+	mov r1,r6
+	bl printf*/
+	
+	cmp r6,#0
+	beq casoJugador1
+	
+	b casoJugador2
+	
 respuestaIncorrecta:
 	ldr r0,=rIncorrecta
 	bl puts
 	
+	cmp r6,#0				/* comparar r6 con 0, para ver qué jugador es */
+	addeq r6, r6, #1		/* si r6 = 0, sumar 1 para que sea turno de jugador 2 */
+	subne r6, r6, #1		/* si r6 != 0, restar 1 para que sea turno de jugador 1 */
+
+	b main2
+	
+	
+@---------------------------------------Casos de los jugadores para sumar puntos
+
+casoJugador1:
+	/*ldr r0,=valorDeR9
+	mov r1,r9
+	bl printf*/
+
+	cmp r9,#1
+	beq suma1
+	
+	cmp r9,#2
+	beq suma2 
+	
+	cmp r9,#3
+	beq suma3
+	
+	cmp r9,#4
+	beq suma4
+	
+	cmp r9,#5
+	beq suma5
+	
+	cmp r9,#6
+	beq suma6
+	
+	cmp r9,#7
+	beq suma7
+	
+casoJugador2:
+	cmp r9,#1
+	beq suma8
+	
+	cmp r9,#2
+	beq suma9
+	
+	cmp r9,#3
+	beq suma10
+	
+	cmp r9,#4
+	beq suma11
+	
+	cmp r9,#5
+	beq suma12
+	
+	cmp r9,#6
+	beq suma13
+	
+	cmp r9,#7
+	beq suma14
+	
+@-------------------------------------Sumas especificas para el jugador 1, respuesta correcta
+suma1:
+	/*ldr r0,=valorDeR9
+	mov r1,r9
+	bl printf*/
+	
+	/*vcvt.f64.f32 d6,s1
+	ldr r0,=valorDeR9
+	vmov r2,r3,d6
+	bl printf
+	
+	vcvt.f64.f32 d7,s15
+	ldr r0,=entra
+	vmov r2,r3,d7
+	bl printf*/
+	
+	vadd.f32 s1,s1,s15			/* suma 1 al contador de arte porque la tuvo correcta */
+	
+	/*vcvt.f64.f32 d7,s1
+	ldr r0,=valorDeR9
+	vmov r2,r3,d7
+	bl printf*/
+	
+	vmov.f32 s0,s1
+	
+	vcmp.f32 s0,s16				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	vmrs apsr_nzcv, fpscr
+	beq sumaPuntosJ1			/* Si tiene 3 correctas, sumar a personajes ganados */
+
+	vcvt.f64.f32 d6,s1
+	ldr r0,=pntsArte
+	vmov r2,r3,d6
+	bl printf
+	
+	b main2
+	
+	
+suma2:
+	vadd.f32 s2,s2,s15
+	vcmp.f32 s2,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ1			/* Si tiene 3 correctas, sumar a personajes ganados */
 	b main2
 
+suma3:
+	vadd.f32 s3,s3,s15
+	vcmp.f32 s3,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ1			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+suma4:
+	vadd.f32 s4,s4,s15
+	vcmp.f32 s4,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ1			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+suma5:
+	vadd.f32 s5,s5,s15
+	vcmp.f32 s5,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ1			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+suma6:
+	vadd.f32 s6,s6,s15
+	vcmp.f32 s6,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ1			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+suma7:
+	vadd.f32 s7,s7,s15
+	vcmp.f32 s7,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ1			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+@-----------------------------------Sumas especificas para el jugador 2, respuesta correcta
+suma8:
+	vadd.f32 s8,s8,s15
+	vcmp.f32 s8,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ2			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+suma9:
+	vadd.f32 s9,s9,s15
+	vcmp.f32 s9,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ2			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+suma10:
+	vadd.f32 s10,s10,s15
+	vcmp.f32 s10,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ2			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+suma11:
+	vadd.f32 s11,s11,s15
+	vcmp.f32 s11,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ2			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+suma12:
+	vadd.f32 s12,s12,s15
+	vcmp.f32 s12,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ2			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+suma13:
+	vadd.f32 s13,s13,s15
+	vcmp.f32 s13,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ2			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+
+suma14:
+	vadd.f32 s14,s14,s15
+	vcmp.f32 s14,s3				/* comparar si el contador de arte ya cuenta con 3 correctas */
+	beq sumaPuntosJ2			/* Si tiene 3 correctas, sumar a personajes ganados */
+	b main2
+	
+sumaPuntosJ1:
+	ldr r0,=entra
+	add r3,r3,#1				/* Suma un un personaje */
+	cmp r3,#3					/* compara si ya tiene los 3 personajes */
+	beq salidaJ1				/* si tiene los 3 personajes, va a la salida */
+	b main2
+	
+sumaPuntosJ2:
+	add r4, r4, #1
+	cmp r4,#3
+	beq salidaJ2
+	b main2
+	
+	
+salidaJ1:
+	ldr r0,=salidaprimero		/* Mensaje de felicitaciones al primer personaje */
+	bl puts
+	
+	b salir						/* Salida */
+	
+salidaJ2:
+	ldr r0,=salidasegundo		/* Mensaje de felicitaciones al segundo personaje */
+	bl puts						
+	
+	b salir						/* Salida */
+
+valorr5:
+	.word registro5
+
+valorNo7:
+	.word registro7
+valorr10:
+	.word registro10
 
 .data
 .align 2
-
+registro5:	.float	0.0
+registro7:	.float 1.0
+registro10:	.float 3.0
 entrada:	.asciz "Bienvenido al juego"
 Instrucciones:	.asciz "El juego consiste en una trivia en la cual usted y su oponente debera contestar correctamente las preguntas para obtener la ventaja"
 instrucciones2:	.asciz "Debera responder correctamente 3 preguntas de la misma categoria para obtener un punto, el primero el obtener 3 sera el ganador"
@@ -1383,6 +1631,11 @@ turno2:	.asciz	"Es el turno del segundo jugador!"
 ingreseNumero:	.asciz	"Ingrese el numero: "
 rCorrecta:	.asciz	"Correcto"
 rIncorrecta:	.asciz	"Incorrecto"
+salidaprimero:	.asciz	"Felicidades jugador 1! Ha ganado! Esperamos que juegue de nuevo"
+salidasegundo:	.asciz	"Felicidades jugador 2! Ha ganado! Esperamos que juegue de nuevo"
+pntsArte:	.asciz	"En arte tiene esta cantidad de puntos: %f \n"
+valorDeR9:	.asciz	"El valor del registro s1 es: %f\n"
+entra:	.asciz	"Entraaaa"
 formatod: .asciz	"%s"
 entrada1:	.word	0
 entrada2:	.word	0
@@ -1559,6 +1812,7 @@ pregunta42r2:	.asciz "Squash" @correcto
 preguntaE7:	.asciz	"¿Cuantas personas integran un grupo de voleyball?\n1. 4\n2. 6"
 preguntaE7r1:	.asciz	"4"
 preguntaE7r2:	.asciz	"6"	@correcta
+
 
 
 
