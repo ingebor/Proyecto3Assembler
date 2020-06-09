@@ -5,6 +5,7 @@
 main:
 
 
+
 ciclo:		
 	/*ldr r0,=a
 	bl puts
