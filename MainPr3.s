@@ -1746,7 +1746,7 @@ pregunta29:	.asciz "¿Como llamaron a Canada los exploradores franceses?\n1. Can
 pregunta30:	.asciz "¿Quien fue el presidente de Guatemala en 2014?\n1. Jimmy Morales\n2. Otto Perez Molina"
 preguntaE5:	.asciz	"¿Quien es el padre de letemaco?\n1. Quiron\n2. Ulises"
 @Primeras 6 de entretenimiento
-pregunta31:	.asciz "¿En que pelicula muerte Luke Skywalker?\n1. Los ultimos jedi\n2. Rogue One"
+pregunta31:	.asciz "¿En que pelicula muere Luke Skywalker?\n1. Los ultimos jedi\n2. Rogue One"
 pregunta32:	.asciz "¿De que pais proviene la musica denomidada Kpop?\n1. Corea del Sur\n2. Corea del Norte"
 pregunta33:	.asciz "¿Quien es el maestro Roshi?\n1. Maestro de Veguetta\n2. Maestro de Goku en artes marciales"
 pregunta34:	.asciz "¿En cual de estos cuentos aparece un conejo blanco?\n1. Pinoccio\n2. Alicia y el pais de las maravillas"
