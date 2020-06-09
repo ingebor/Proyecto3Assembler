@@ -324,8 +324,61 @@ ciclo:
 		ldr r0,=f25
 		bl puts
 		
-		
-		
+		@ganador
+		ldr r0,=g1
+		bl puts
+		ldr r0,=g2
+		bl puts
+		ldr r0,=g3
+		bl puts
+		ldr r0,=g4
+		bl puts
+		ldr r0,=g5
+		bl puts
+		ldr r0,=g6
+		bl puts
+		ldr r0,=g7
+		bl puts
+		ldr r0,=g8
+		bl puts
+		ldr r0,=g9
+		bl puts
+		ldr r0,=g10
+		bl puts
+		ldr r0,=g11
+		bl puts
+		ldr r0,=g12
+		bl puts
+		ldr r0,=g13
+		bl puts
+		ldr r0,=g14
+		bl puts
+		ldr r0,=g15
+		bl puts
+		ldr r0,=g16
+		bl puts
+		ldr r0,=g17
+		bl puts
+		ldr r0,=g18
+		bl puts
+		ldr r0,=g19
+		bl puts
+		ldr r0,=g20
+		bl puts
+		ldr r0,=g21
+		bl puts
+		ldr r0,=g22
+		bl puts
+		ldr r0,=g23
+		bl puts
+		ldr r0,=g24
+		bl puts
+		ldr r0,=g25
+		bl puts
+		ldr r0,=g26
+		bl puts
+		ldr r0,=g27
+		bl puts
 		
 		
 		
@@ -519,3 +572,32 @@ f24:	.asciz "...................O8,.................................... OZ.... "
 f25:	.asciz ".................... .I8OOOOOOOOOOOOO8OOOZOOOOOOOOOOOOOOOOD......"
 
 
+      
+      
+g1:	.asciz " .................M...M..N=.......NI..M..8O.........."          
+g2:	.asciz " ..................:M..8+.,M......,M..$8..M.........."           
+g3:	.asciz " ...................M=..M..D7.....M:. M..D=.........."           
+g4:	.asciz " ....................M..$I. M ...+N..N+.,M..........."          
+g5:	.asciz " ....................88..M..7D...M..,M..D~..........."           
+g6:	.asciz " .....................M..$O..M:.+Z..M,. M............"           
+g7:	.asciz " .....................~M..M..,M.M..$D..M:............"          
+g8:	.asciz " ......................M,.~M..DM$..M..~M............."           
+g9:	.asciz " ...................... M..7NMMMMMD=..M ............."          
+g10:	.asciz " .......................MMI........:ZMM.........."          
+g11:	.asciz " ....................,MO.,8MN$+=?ZMM$..ON........"          
+g12:	.asciz " ...................DD.:M?.....M..,..ZM:.M=......"           
+g13:	.asciz " ..................M7.NM...?M..M..M,...MZ.M7....."         
+g14:	.asciz " .................N?.M=.ON.....O.....MD.78.M+...."        
+g15:	.asciz " ................~N.M+.........M.... ....D= M,..."          
+g16:	.asciz " ................M..M.7MM.....DZZ.....MM7 M.OZ..."         
+g17:	.asciz " ................M.D7....DMMMMM.MMMMM7....M.,M..."           
+g18:	.asciz " ................M.N= MM,..ZM~...7M=...MM.N=.M..."        
+g19:	.asciz " ................M D$.......,M.I M........M.:M..."          
+g20:	.asciz " ................M:.M.?MN...MNM:MM$...MM?,M.8I..."           
+g21:	.asciz " ................~N.M+, ...:M....=M .....D~ M...."          
+g22:	.asciz " .................M?.M+.=M. ........,M=.7O M+...."        
+g23:	.asciz " ..................M7 NM...~M..M..M....M$.MI....."           
+g24:	.asciz " ...................$M. M8. ...M..,..MM ,M......."           
+g25:	.asciz " .....................MM..7MMNZ$OMMM=..MD........"       
+g26:	.asciz " .......................OMO:.......~NM7,........."          
+g27:	.asciz " ..........................,+8MMMZ=,........... " 
