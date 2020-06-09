@@ -523,26 +523,26 @@ pregunta1Geografia:
 	ldr r0,=turno1					/* Turno del jugador 1 */
 	bl puts
 	
-	ldr r0,=geografia
+	ldr r0,=geografia				/* mostrar mensaje de geografia */
 	bl puts
 
-	ldr r0,=pregunta13
+	ldr r0,=pregunta13				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer respuesta */
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta = 1 */
 	beq resCorGeo1
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncGeo1
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorGeo1:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -552,32 +552,32 @@ resCorGeo1:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaGeografiaJ1
 	
-	bne pregunta2Geografia				/* pregunta 2 arte */
+	bne pregunta2Geografia			/* pregunta siguiente */
 	
 resIncGeo1:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta2Geografia
+	b pregunta2Geografia			/* pregunta siguiente */
 
 pregunta2Geografia:
-	ldr r0,=pregunta14
+	ldr r0,=pregunta14				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorGeo2
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncGeo2
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorGeo2:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -587,33 +587,33 @@ resCorGeo2:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaGeografiaJ1
 	
-	bne pregunta3Geografia				/* pregunta 2 arte */
+	bne pregunta3Geografia			/* pregunta siguiente */
 	
 resIncGeo2:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta3Geografia
+	b pregunta3Geografia			/* pregunta siguiente */
 
 pregunta3Geografia:
-	ldr r0,=pregunta15
+	ldr r0,=pregunta15				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta incorrecta = 1 */
 	beq resIncGeo3
 	
-	cmp r11,#2
+	cmp r11,#2						/* respuesta correcta = 2 */
 	beq resCorGeo3
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorGeo3:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -623,33 +623,33 @@ resCorGeo3:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaGeografiaJ1
 	
-	bne pregunta4Geografia				/* pregunta 2 arte */
+	bne pregunta4Geografia			/* pregunta siguiente */
 	
 resIncGeo3:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta4Geografia
+	b pregunta4Geografia			/* pregunta siguiente */
 
 pregunta4Geografia:
-	ldr r0,=pregunta16
+	ldr r0,=pregunta16				/* pregunta siguiente */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta incorrecta = 1 */
 	beq resIncGeo4
 	
-	cmp r11,#2
+	cmp r11,#2						/* respuesta correcta = 2 */
 	beq resCorGeo4
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorGeo4:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -659,32 +659,32 @@ resCorGeo4:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaGeografiaJ1
 	
-	bne pregunta5Geografia				/* pregunta 2 arte */
+	bne pregunta5Geografia			/* pregunta siguiente */
 	
 resIncGeo4:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta5Geografia
+	b pregunta5Geografia			/* pregunta siguiente */
 
 pregunta5Geografia:
-	ldr r0,=pregunta17
+	ldr r0,=pregunta17				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorGeo5
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncGeo5
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorGeo5:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -694,20 +694,20 @@ resCorGeo5:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaGeografiaJ1
 	
-	bne pregunta1Ciencia			/* pregunta 2 arte */
+	bne pregunta1Ciencia			/* pregunta siguiente */
 	
 resIncGeo5:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta1Ciencia
+	b pregunta1Ciencia				/* pregunta siguiente */
 
 ganaGeografiaJ1:
-	ldr r0,=ganarCatGeografia
+	ldr r0,=ganarCatGeografia		/* mostrar mensaje de  categoria ganada */
 	bl puts 
 	
-	add r4,r4,#1
-	ldr r0,=ganarPersonaje
+	add r4,r4,#1					/* sumar 1 al contador de categorias ganadas */
+	ldr r0,=ganarPersonaje			/* pregunta para mostrar el personaje ganado */
 	bl puts
 	
 	ldr r0,=formato
@@ -718,14 +718,14 @@ ganaGeografiaJ1:
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* si se ingreso 1, imprimir personaje */
 	beq imprimirPlaneta
-	b numIncorrecto
+	b numIncorrecto					/* si no mostrar ingreso incorrecto */
 	
 imprimirPlaneta:
-	bl mostrarPlaneta
+	bl mostrarPlaneta				/* subrutina para mostrar personaje */
 	
-	ldr r0,=preguntaSeguir
+	ldr r0,=preguntaSeguir			/* observar bien el personaje y luego continuar */
 	bl puts 
 	
 	ldr r0,=formato
@@ -736,9 +736,9 @@ imprimirPlaneta:
 	
 	ldr r11,[r8]
 	
-	cmp r11, #1
+	cmp r11, #1						/* si se ingresa 1, ir a la categoria siguiente */
 	beq pregunta1Ciencia
-	b numIncorrecto
+	b numIncorrecto					/* si no, ingreso incorrecto */
 
 @---------------------------------------Seccion de validacion de preguntas y respuestas------Ciencia	
 pregunta1Ciencia:
@@ -749,23 +749,23 @@ pregunta1Ciencia:
 	ldr r0,=ciencia
 	bl puts
 	
-	ldr r0,=pregunta19
+	ldr r0,=pregunta19				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta = 1 */
 	beq resCorCie1
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncCie1
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorCie1:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -775,33 +775,33 @@ resCorCie1:
 	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaCienciaJ2
 	
-	bne pregunta2Ciencia			/* pregunta 2 arte */
+	bne pregunta2Ciencia			/* pregunta siguiente */			
 	
 resIncCie1:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta2Ciencia
+	b pregunta2Ciencia				/* pregunta siguiente */
 
 pregunta2Ciencia:
-	ldr r0,=pregunta20
+	ldr r0,=pregunta20				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta incorrecta = 1 */
 	beq resIncCie2
 	
-	cmp r11,#2
+	cmp r11,#2						/* respuesta correcta = 2 */
 	beq resCorCie2
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorCie2:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -811,32 +811,32 @@ resCorCie2:
 	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaCienciaJ2
 	
-	bne pregunta3Ciencia			/* pregunta 2 arte */
+	bne pregunta3Ciencia			/* pregunta siguiente */
 	
 resIncCie2:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta3Ciencia
+	b pregunta3Ciencia				/* pregunta siguiente */
 
 pregunta3Ciencia:
-	ldr r0,=pregunta21
+	ldr r0,=pregunta21				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorCie3
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncCie3
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorCie3:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -846,32 +846,32 @@ resCorCie3:
 	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaCienciaJ2
 	
-	bne pregunta4Ciencia			/* pregunta 2 arte */
+	bne pregunta4Ciencia			/* pregunta siguiente */
 	
 resIncCie3:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta4Ciencia
+	b pregunta4Ciencia				/* pregunta siguiente */
 
 pregunta4Ciencia:
-	ldr r0,=pregunta22
+	ldr r0,=pregunta22				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorCie4
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncCie4
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorCie4:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -881,32 +881,32 @@ resCorCie4:
 	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaCienciaJ2
 	
-	bne pregunta5Ciencia			/* pregunta 2 arte */
+	bne pregunta5Ciencia			/* pregunta siguiente */
 	
 resIncCie4:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta5Ciencia
+	b pregunta5Ciencia				/* pregunta siguiente */
 
 pregunta5Ciencia:
-	ldr r0,=pregunta23
+	ldr r0,=pregunta23				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorCie5
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncCie5
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 
 resCorCie5:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -916,20 +916,20 @@ resCorCie5:
 	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaCienciaJ2
 	
-	bne pregunta1Historia			/* pregunta 2 arte */
+	bne pregunta1Historia			/* pregunta siguiente */
 	
 resIncCie5:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta1Historia
+	b pregunta1Historia				/* pregunta siguiente */
 
 ganaCienciaJ2:
-	ldr r0,=ganarCatCiencia
+	ldr r0,=ganarCatCiencia			/* mostrar mensaje de  categoria ganada */
 	bl puts 
 	
-	add r5,r5,#1
-	ldr r0,=ganarPersonaje
+	add r5,r5,#1					/* sumar 1 al contador de categorias ganadas */
+	ldr r0,=ganarPersonaje			/* pregunta para mostrar el personaje ganado */
 	bl puts
 	
 	ldr r0,=formato
@@ -940,14 +940,14 @@ ganaCienciaJ2:
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* si se ingreso 1, imprimir personaje */
 	beq imprimirTubo
-	b numIncorrecto
+	b numIncorrecto					/* si no mostrar ingreso incorrecto */
 	
 imprimirTubo:
-	bl mostrarTubo
+	bl mostrarTubo				   	/* subrutina para mostrar personaje */
 	
-	ldr r0,=preguntaSeguir
+	ldr r0,=preguntaSeguir			/* observar bien el personaje y luego continuar */
 	bl puts 
 	
 	ldr r0,=formato
@@ -958,9 +958,9 @@ imprimirTubo:
 	
 	ldr r11,[r8]
 	
-	cmp r11, #1
+	cmp r11, #1						/* si se ingresa 1, ir a la categoria siguiente */
 	beq pregunta1Historia
-	b numIncorrecto
+	b numIncorrecto					/* si no, ingreso incorrecto */
 	
 
 @---------------------------------------Seccion de validacion de preguntas y respuestas------HISTORIA
@@ -972,24 +972,24 @@ pregunta1Historia:
 	ldr r0,=historia
 	bl puts
 	
-	ldr r0,=pregunta25
+	ldr r0,=pregunta25				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta incorrecta = 1 */
 	beq resIncHis1
 	
-	cmp r11,#2
+	cmp r11,#2						/* respuesta correcta = 2 */
 	beq resCorHis1
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorHis1:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -999,33 +999,33 @@ resCorHis1:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaHistoriaJ1
 	
-	bne pregunta2Historia		/* pregunta 2 arte */
+	bne pregunta2Historia			/* pregunta siguiente */
 	
 resIncHis1:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta2Historia
+	b pregunta2Historia				/* pregunta siguiente */
 
 pregunta2Historia:
-	ldr r0,=pregunta26
+	ldr r0,=pregunta26				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta incorrecta = 1 */
 	beq resIncHis2
 	
-	cmp r11,#2
+	cmp r11,#2						/* respuesta correcta = 2 */
 	beq resCorHis2
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorHis2:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1035,32 +1035,32 @@ resCorHis2:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaHistoriaJ1
 	
-	bne pregunta3Historia		/* pregunta 2 arte */
+	bne pregunta3Historia			/* pregunta siguiente */
 	
 resIncHis2:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta3Historia
+	b pregunta3Historia				/* pregunta siguiente */
 
 pregunta3Historia:
-	ldr r0,=pregunta27
+	ldr r0,=pregunta27				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorHis3
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncHis3
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorHis3:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1070,32 +1070,32 @@ resCorHis3:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaHistoriaJ1
 	
-	bne pregunta4Historia		/* pregunta 2 arte */
+	bne pregunta4Historia			/* pregunta siguiente */
 	
 resIncHis3:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta4Historia
+	b pregunta4Historia				/* pregunta siguiente */
 
 pregunta4Historia:
-	ldr r0,=pregunta28
+	ldr r0,=pregunta28				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorHis4
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncHis4
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorHis4:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1105,33 +1105,33 @@ resCorHis4:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaHistoriaJ1
 	
-	bne pregunta5Historia		/* pregunta 2 arte */
+	bne pregunta5Historia			/* pregunta siguiente */
 	
 resIncHis4:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta5Historia
+	b pregunta5Historia				/* pregunta siguiente */
 
 pregunta5Historia:
-	ldr r0,=pregunta29
+	ldr r0,=pregunta29				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta incorrecta = 1 */
 	beq resIncHis5
 	
-	cmp r11,#2
+	cmp r11,#2						/* respuesta correcta = 2 */
 	beq resCorHis5
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorHis5:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1141,20 +1141,20 @@ resCorHis5:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaHistoriaJ1
 	
-	bne pregunta1Entretenimiento		/* pregunta 2 arte */
+	bne pregunta1Entretenimiento	/* pregunta siguiente */
 	
 resIncHis5:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta1Entretenimiento
+	b pregunta1Entretenimiento		/* pregunta siguiente */
 
 ganaHistoriaJ1:
-	ldr r0,=ganarCatHistoria
+	ldr r0,=ganarCatHistoria		/* mostrar mensaje de  categoria ganada */
 	bl puts 
 	
-	add r4,r4,#1
-	ldr r0,=ganarPersonaje
+	add r4,r4,#1					/* sumar 1 al contador de categorias ganadas */
+	ldr r0,=ganarPersonaje			/* pregunta para mostrar el personaje ganado */
 	bl puts
 	
 	ldr r0,=formato
@@ -1165,17 +1165,17 @@ ganaHistoriaJ1:
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* si se ingreso 1, imprimir personaje */
 	beq imprimirCasco
-	b numIncorrecto
+	b numIncorrecto					/* si no mostrar ingreso incorrecto */
 	
 imprimirCasco:
-	bl mostrarCasco
+	bl mostrarCasco					/* subrutina para mostrar personaje */
 	
-	cmp r4,#3
-	beq salidaJ1
+	cmp r4,#3						/* verificar si ya se ganaron 3 categorias */
+	beq salidaJ1					/* Si se ganaron 3 categorias, mostrar al ganador y salir */
 	
-	ldr r0,=preguntaSeguir
+	ldr r0,=preguntaSeguir			/* observar bien el personaje y luego continuar */
 	bl puts 
 	
 	ldr r0,=formato
@@ -1186,9 +1186,9 @@ imprimirCasco:
 	
 	ldr r11,[r8]
 	
-	cmp r11, #1
+	cmp r11, #1						/* si se ingresa 1, ir a la categoria siguiente */
 	beq pregunta1Entretenimiento
-	b numIncorrecto
+	b numIncorrecto					/* si no, ingreso incorrecto */
 
 @---------------------------------------Seccion de validacion de preguntas y respuestas------ENTRETENIMIENTO	
 pregunta1Entretenimiento:
@@ -1199,23 +1199,23 @@ pregunta1Entretenimiento:
 	ldr r0,=entretenimiento
 	bl puts
 	
-	ldr r0,=pregunta31
+	ldr r0,=pregunta31				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorEnt1
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncEnt1
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorEnt1:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1225,32 +1225,32 @@ resCorEnt1:
 	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaEntretenimientoJ2
 	
-	bne pregunta2Entretenimiento		/* pregunta 2 arte */
+	bne pregunta2Entretenimiento	/* pregunta siguiente */
 	
 resIncEnt1:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta2Entretenimiento
+	b pregunta2Entretenimiento		/* pregunta siguiente */
 
 pregunta2Entretenimiento:
-	ldr r0,=pregunta32
+	ldr r0,=pregunta32				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorEnt2
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncEnt2
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorEnt2:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1260,33 +1260,33 @@ resCorEnt2:
 	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaEntretenimientoJ2
 	
-	bne pregunta3Entretenimiento		/* pregunta 2 arte */
+	bne pregunta3Entretenimiento	/* pregunta siguiente */
 	
 resIncEnt2:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta3Entretenimiento
+	b pregunta3Entretenimiento		/* pregunta siguiente */
 
 pregunta3Entretenimiento:
-	ldr r0,=pregunta33
+	ldr r0,=pregunta33				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta incorrecta = 1 */
 	beq resIncEnt3
 	
-	cmp r11,#2
+	cmp r11,#2						/* respuesta correcta = 2 */
 	beq resCorEnt3
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorEnt3:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1296,33 +1296,33 @@ resCorEnt3:
 	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaEntretenimientoJ2
 	
-	bne pregunta4Entretenimiento		/* pregunta 2 arte */
+	bne pregunta4Entretenimiento	/* pregunta siguiente */
 	
 resIncEnt3:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta4Entretenimiento
+	b pregunta4Entretenimiento		/* pregunta siguiente */
 
 pregunta4Entretenimiento:
-	ldr r0,=pregunta34
+	ldr r0,=pregunta34				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf  						/* leer ingreso */
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta incorrecta = 1 */
 	beq resIncEnt4
 	
-	cmp r11,#2
+	cmp r11,#2						/* respuesta correcta = 2 */
 	beq resCorEnt4
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorEnt4:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1332,32 +1332,32 @@ resCorEnt4:
 	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaEntretenimientoJ2
 	
-	bne pregunta5Entretenimiento		/* pregunta 2 arte */
+	bne pregunta5Entretenimiento	/* pregunta siguiente */
 	
 resIncEnt4:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta5Entretenimiento
+	b pregunta5Entretenimiento		/* pregunta siguiente */
 
 pregunta5Entretenimiento:
-	ldr r0,=pregunta35
+	ldr r0,=pregunta35				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf  						/* leer ingreso */
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta = 1 */
 	beq resCorEnt5
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncEnt5
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorEnt5:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1367,20 +1367,20 @@ resCorEnt5:
 	cmp r7,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaEntretenimientoJ2
 	
-	bne pregunta1Deportes		/* pregunta 2 arte */
+	bne pregunta1Deportes			/* pregunta siguiente */
 	
 resIncEnt5:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta1Deportes
+	b pregunta1Deportes				/* pregunta siguiente */
 
 ganaEntretenimientoJ2:
-	ldr r0,=ganarCatEntretenimiento
+	ldr r0,=ganarCatEntretenimiento	/* mostrar mensaje de  categoria ganada */
 	bl puts 
 	
-	add r5,r5,#1
-	ldr r0,=ganarPersonaje
+	add r5,r5,#1					/* sumar 1 al contador de categorias ganadas */
+	ldr r0,=ganarPersonaje			/* pregunta para mostrar el personaje ganado */
 	bl puts
 	
 	ldr r0,=formato
@@ -1391,17 +1391,17 @@ ganaEntretenimientoJ2:
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* si se ingreso 1, imprimir personaje */
 	beq imprimirTelevision
-	b numIncorrecto
+	b numIncorrecto					/* si no mostrar ingreso incorrecto */
 	
 imprimirTelevision:
-	bl mostrarTelevision
+	bl mostrarTelevision			/* subrutina para mostrar personaje */
 	
-	cmp r5,#3
-	beq salidaJ2
+	cmp r5,#3						/* verificar si ya se ganaron 3 categorias */
+	beq salidaJ2					/* Si se ganaron 3 categorias, mostrar al ganador y salir */
 	
-	ldr r0,=preguntaSeguir
+	ldr r0,=preguntaSeguir			/* observar bien el personaje y luego continuar */
 	bl puts 
 	
 	ldr r0,=formato
@@ -1412,9 +1412,9 @@ imprimirTelevision:
 	
 	ldr r11,[r8]
 	
-	cmp r11, #1
+	cmp r11, #1						/* si se ingresa 1, ir a la categoria siguiente */
 	beq pregunta1Deportes
-	b numIncorrecto
+	b numIncorrecto					/* si no, ingreso incorrecto */
 
 @---------------------------------------Seccion de validacion de preguntas y respuestas------DEPORTES	
 pregunta1Deportes:
@@ -1425,24 +1425,24 @@ pregunta1Deportes:
 	ldr r0,=deportes
 	bl puts
 	
-	ldr r0,=pregunta37
+	ldr r0,=pregunta37				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf  						/* leer ingreso */
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta incorrecta = 1 */
 	beq resIncDep1
 	
-	cmp r11,#2
+	cmp r11,#2						/* respuesta correcta = 2 */
 	beq resCorDep1
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorDep1:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1452,32 +1452,32 @@ resCorDep1:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaDeportesJ1
 	
-	bne pregunta2Deportes		/* pregunta 2 arte */
+	bne pregunta2Deportes			/* pregunta siguiente */
 	
 resIncDep1:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta2Deportes
+	b pregunta2Deportes				/* pregunta siguiente */
 
 pregunta2Deportes:
-	ldr r0,=pregunta38
+	ldr r0,=pregunta38				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf  						/* leer ingreso */
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorDep2
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncDep2
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorDep2:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1487,32 +1487,32 @@ resCorDep2:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaDeportesJ1
 	
-	bne pregunta3Deportes		/* pregunta 2 arte */
+	bne pregunta3Deportes			/* pregunta siguiente */
 	
 resIncDep2:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta3Deportes
+	b pregunta3Deportes				/* pregunta siguiente */
 
 pregunta3Deportes:
-	ldr r0,=pregunta39
+	ldr r0,=pregunta39				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf  						/* leer ingreso */
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorDep3
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncDep3
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorDep3:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1522,32 +1522,32 @@ resCorDep3:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaDeportesJ1
 	
-	bne pregunta4Deportes		/* pregunta 2 arte */
+	bne pregunta4Deportes			/* pregunta siguiente */
 	
 resIncDep3:	
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta4Deportes
+	b pregunta4Deportes				/* pregunta siguiente */
 
 pregunta4Deportes:
-	ldr r0,=pregunta40
+	ldr r0,=pregunta40				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf 						/* leer ingreso */ 
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta correcta =1 */
 	beq resCorDep4
-	cmp r11,#2
+	cmp r11,#2						/* respuesta incorrecta = 2 */
 	beq resIncDep4
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 	
 resCorDep4:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1557,33 +1557,33 @@ resCorDep4:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaDeportesJ1
 	
-	bne pregunta5Deportes		/* pregunta 2 arte */
+	bne pregunta5Deportes			/* pregunta siguiente */
 	
 resIncDep4:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
 	bl puts
 
-	b pregunta5Deportes
+	b pregunta5Deportes				/* pregunta siguiente */
 
 pregunta5Deportes:
-	ldr r0,=pregunta41
+	ldr r0,=pregunta41				/* mostrar pregunta */
 	bl puts
 	
 	ldr r0,=formato
 	ldr r1,=entrada1
-	bl scanf 
+	bl scanf  						/* leer ingreso */
 	
 	ldr r8,=entrada1
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* respuesta incorrecta = 1 */
 	beq resIncDep5
 	
-	cmp r11,#2
+	cmp r11,#2						/* respuesta correcta = 2 */
 	beq resCorDep5
 	
-	b numIncorrecto
+	b numIncorrecto					/* ingreso incorrecto */
 
 resCorDep5:
 	ldr r0,=rCorrecta				/* Mostrar mensaje de respuesta correcta */
@@ -1593,7 +1593,7 @@ resCorDep5:
 	cmp r6,#3						/* verificar si ya lleva 3 respuestas correctas */
 	beq ganaDeportesJ1
 	
-	bne ningunoGana		/* pregunta 2 arte */
+	bne ningunoGana					/* si ninguno gana, etiqueta ninguno gana */
 	
 resIncDep5:		
 	ldr r0,=rIncorrecta				/* Mostrar mensaje de respuesta incorrecta */
@@ -1602,14 +1602,11 @@ resIncDep5:
 	b ningunoGana
 
 ganaDeportesJ1:
-	ldr r0,=ganarCatDeportes
+	ldr r0,=ganarCatDeportes		/* mostrar mensaje de  categoria ganada */
 	bl puts 
 	
-	ldr r0,=ganarPersonaje
-	bl puts
-	
-	add r4,r4,#1
-	ldr r0,=ganarPersonaje
+	add r4,r4,#1					/* sumar 1 al contador de categorias ganadas */
+	ldr r0,=ganarPersonaje			/* pregunta para mostrar el personaje ganado */
 	bl puts
 	
 	ldr r0,=formato
@@ -1620,17 +1617,17 @@ ganaDeportesJ1:
 	
 	ldr r11,[r8]
 	
-	cmp r11,#1
+	cmp r11,#1						/* si se ingreso 1, imprimir personaje */
 	beq imprimirPelota
-	b numIncorrecto
+	b numIncorrecto					/* si no mostrar ingreso incorrecto */
 	
 imprimirPelota:
-	bl mostrarPelota
+	bl mostrarPelota				/* subrutina para mostrar personaje */
 	
-	cmp r4,#3
-	beq salidaJ1
+	cmp r4,#3						/* verificar si ya se ganaron 3 categorias */
+	beq salidaJ1					/* Si se ganaron 3 categorias, mostrar al ganador y salir */
 	
-	ldr r0,=preguntaSeguir
+	ldr r0,=preguntaSeguir			/* observar bien el personaje y luego continuar */
 	bl puts 
 	
 	ldr r0,=formato
@@ -1641,40 +1638,41 @@ imprimirPelota:
 	
 	ldr r11,[r8]
 	
-	cmp r11, #1
+	cmp r11, #1						/* si se ingresa 1, ir a ninguno gana. Si se llego a este punto quiere decir que ninguno ha ganado */
 	beq ningunoGana
-	b numIncorrecto
+	b numIncorrecto					/* si no, ingreso incorrecto */
 		
-	b ningunoGana
-ningunoGana:
-	ldr r0,=sinGanador
+	b ningunoGana					/* ninguno ha ganado */
+
+ningunoGana:						/* En caso de que nadie gane */
+	ldr r0,=sinGanador				/* mostrar mensaje que informe */
 	bl puts 
 	
-	b salir
+	b salir							/* salir */
 
 salidaJ1:
-	ldr r0,=medalla
+	ldr r0,=medalla					/* mostrar medalla al ganador */
 	bl puts
 	
-	ldr r0,=salidaprimero		/* Mensaje de felicitaciones al primer personaje */
+	ldr r0,=salidaprimero			/* Mensaje de felicitaciones al primer personaje */
 	bl puts
 	
-	b salir						/* Salida */
+	b salir							/* Salida */
 salidaJ2:
-	ldr r0,=medalla
+	ldr r0,=medalla					/* mostrar medalla al ganador */
 	bl puts	
-	ldr r0,=salidasegundo		/* Mensaje de felicitaciones al segundo personaje */
+	ldr r0,=salidasegundo			/* Mensaje de felicitaciones al segundo personaje */
 	bl puts	
-	b salir						/* Salida */
+	b salir							/* Salida */
 
 .data
 .align 2
-entrada:	.asciz " -------------------------------------\n| !Bienvenido al juego de Trivia ARM! |\n -------------------------------------"
-Instrucciones:	.asciz "El juego consiste en una trivia en la cual usted y su oponente debera contestar correctamente las preguntas para obtener la ventaja"
-instrucciones2:	.asciz "Debera responder correctamente 3 preguntas de la misma categoria para obtener un personaje, ¡el primero el obtener 3 sera el ganador!"
-instrucciones3:	.asciz "\n*************************************************************\n ADVERTENCIA \nPor favor no ingrese letras ni numeros que no se encuentren entre los valores indicados\n*************************************************************\n"
+entrada:	.asciz " -------------------------------------\n| ¡Bienvenido al juego de Trivia ARM! |\n -------------------------------------"
+Instrucciones:	.asciz "->El juego consiste en una trivia en la cual usted y su oponente deberan competir y contestar correctamente las preguntas que se le muestran"
+instrucciones2:	.asciz "\n->Debera responder correctamente 3 preguntas de la misma categoria para obtener un personaje, ¡el primero en obtener 3 personajes sera el ganador!"
+instrucciones3:	.asciz "\n*******************************************************************************\n ADVERTENCIA \nPor favor no ingrese letras ni numeros que no se encuentren entre los valores indicados\n*******************************************************************************\n"
 instrucciones4:	.asciz "¿Desea comenzar a jugar? Eligiremos quien empezara a jugar primero! Selecciones la opcion correcta! \n1. Si!\n2. No, quiero salir del juego"
-incorrecto:	.asciz	"\n*************************************************************\n¡Ha ingresado un valor incorrecto! :O \nLo lamento, debera regresesar al inicio :( \nCumpla con la advertencia por favor :D\n*************************************************************\n"
+incorrecto:	.asciz	"\n*******************************************************************************\n¡Ha ingresado un valor incorrecto! :O \nLo lamento, debera regresesar al inicio :( \nCumpla con la advertencia por favor :D\n*******************************************************************************\n"
 turno1:	.asciz	"\n--------------------------------------------------------------------------\nEs el turno del primer jugador! Aprovecha a tener la mayor cantidad de respuestas correctas! No te detengas hasta terminar la categoria que te ha tocado!\n--------------------------------------------------------------------------\n"
 turno2:	.asciz	"\n--------------------------------------------------------------------------\nEs el turno del segundo jugador! Aprovecha a tener la mayor cantidad de respuestas correctas! No te detengas hasta terminar la categoria que te ha tocado!\n--------------------------------------------------------------------------\n"
 rCorrecta:	.asciz	"Respuesta correcta!"
@@ -1696,7 +1694,6 @@ ganarMedalla:	.asciz	"¡Presione 1 para recibir su medalla!"
 entrada1:	.word	0
 formato:	.asciz	"%d"
 formatos:	.asciz	"%s\n"
-entrea:	.asciz	"Entraa"
 
 arte:	.asciz	"¡Arte!"
 literatura:	.asciz	"¡Literatura!"

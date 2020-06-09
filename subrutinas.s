@@ -35,10 +35,10 @@ mysrand:
 	
 .global mostrarLibro
 mostrarLibro:
-	push {lr}
+	push {lr}				
 	ldr r1,=libro
 	ldr r0,=formato
-	bl printf
+	bl printf				/* Mostrar personaje ganado */
 	pop {lr}
 	mov pc,lr
 	
@@ -47,7 +47,7 @@ mostrarTubo:
 	push {lr}
 	ldr r1,=tubo
 	ldr r0,=formato
-	bl printf
+	bl printf				/* Mostrar personaje ganado */
 	pop {lr}
 	mov pc,lr
 	
@@ -56,7 +56,7 @@ mostrarLapiz:
 	push {lr}
 	ldr r1,=lapiz
 	ldr r0,=formato
-	bl printf
+	bl printf				/* Mostrar personaje ganado */
 	pop {lr}
 	mov pc,lr
 	
@@ -65,7 +65,7 @@ mostrarPelota:
 	push {lr}
 	ldr r1,=pelota
 	ldr r0,=formato
-	bl printf
+	bl printf				/* Mostrar personaje ganado */
 	pop {lr}
 	mov pc,lr
 	
@@ -74,7 +74,7 @@ mostrarCasco:
 	push {lr}
 	ldr r1,=casco
 	ldr r0,=formato
-	bl printf
+	bl printf				/* Mostrar personaje ganado */
 	pop {lr}
 	mov pc,lr
 	
@@ -83,7 +83,7 @@ mostrarPlaneta:
 	push {lr}
 	ldr r1,=planeta
 	ldr r0,=formato
-	bl printf
+	bl printf				/* Mostrar personaje ganado */
 	pop {lr}
 	mov pc,lr
 	
@@ -92,7 +92,7 @@ mostrarTelevision:
 	push {lr}
 	ldr r1,=television
 	ldr r0,=formato
-	bl printf
+	bl printf				/* Mostrar personaje ganado */
 	pop {lr}
 	mov pc,lr
 	
@@ -101,6 +101,6 @@ mostrarMedalla:
 	push {lr}
 	ldr r1,=medalla
 	ldr r0,=formato
-	bl printf
+	bl printf				/* Mostrar personaje ganado */
 	pop {lr}
 	mov pc,lr
