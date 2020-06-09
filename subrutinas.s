@@ -1,5 +1,5 @@
 @Subrutinas para numero aleatorio de: Villena, A. & Asenjo, R. & Corbera, F. en Practicas basadas en Raspberry Pi
-
+@Ayleen Rubio y Andres Say 19003, 19705
 .data
 seed: 	.word 	1
 const1:	.word	2
